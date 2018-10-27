@@ -1,0 +1,62 @@
+.graph {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position:relative;
+  max-width: 800px;
+  height: 400px;
+  background: #ddd;
+  top: 20px;
+  left: 20px;
+}
+
+.weekBar {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.langBar {
+  top: 0;
+  bottom: 0;
+  opacity:0.8;
+}
+
+.hline {
+  position: absolute;
+/*   thickness */
+  height: 2px; 
+/*   length    */
+  width: 100%;
+  vertical-allign: 20px;
+  top: 10%;  
+  background: #aaa;
+}
+
+.xlab {
+  height: 15%;
+  width: 90%;
+  background: yellow;
+  
+}
+
+.ylab{
+  height: 85%;
+  width: 10%;
+  background: blue;
+}
+
+.corner{
+  height: 15%;
+  width: 10%;
+  background: purple;
+}
+
+.bar-lines-container{
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  height: 85%;
+  width: 90%;
+  background: #ccc;
+}
