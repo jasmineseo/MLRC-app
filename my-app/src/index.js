@@ -21,7 +21,8 @@ class CheckIn extends React.Component {
       school: "",
       gradYear: "",
       service: "",
-      language: ""
+      language: "",
+      date:""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -64,6 +65,18 @@ class CheckIn extends React.Component {
             name="name"
             value={this.state.value}
             placeholder={"Enter your name"}
+            onChange={this.handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Date:
+          <input
+            type="text"
+            name="date"
+            value={this.state.value}
+            placeholder={"MM-DD-YYYY"}
             onChange={this.handleChange}
           />
         </label>
