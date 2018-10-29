@@ -1,5 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import * as firebase from "firebase";
+
+var config = {
+  apiKey: "AIzaSyCcvypPOfoIdECYkbhJhVRc6T1gA7aOkbU",
+  authDomain: "mlrc-5a590.firebaseapp.com",
+  databaseURL: "https://mlrc-5a590.firebaseio.com",
+  projectId: "mlrc-5a590",
+  storageBucket: "mlrc-5a590.appspot.com",
+  messagingSenderId: "866673220218"
+};
+firebase.initializeApp(config);
 
 class CheckIn extends React.Component {
   constructor(props) {
@@ -10,7 +21,8 @@ class CheckIn extends React.Component {
       school: "",
       gradYear: "",
       service: "",
-      language: ""
+      language: "",
+      date:""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,6 +46,12 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
+    firebase.database().ref(this.state.date + "/" + this.state.name).set({
+      gradYear: this.state.gradYear,
+      service: this.state.service,
+      language: this.state.language,
+      school: this.state.school
+    });
     event.preventDefault();
   }
 
@@ -47,6 +65,18 @@ class CheckIn extends React.Component {
             name="name"
             value={this.state.value}
             placeholder={"Enter your name"}
+            onChange={this.handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Date:
+          <input
+            type="text"
+            name="date"
+            value={this.state.value}
+            placeholder={"MM-DD-YYYY"}
             onChange={this.handleChange}
           />
         </label>
