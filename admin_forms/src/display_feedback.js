@@ -35,6 +35,7 @@ ref.on("value", function(snapshot) {
 class Display_Feedback extends React.Component {
     render() {
         return (
+          <div>
             <header>Student Feedback Responses</header> 
             <table style = "width: 100%"> 
                 <tr> 
@@ -54,7 +55,7 @@ class Display_Feedback extends React.Component {
                 </tr>
             
             </table>
-            
+          </div>   
         )
     }
 }

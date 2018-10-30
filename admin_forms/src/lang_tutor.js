@@ -22,6 +22,7 @@ class Lang_Tutor extends React.Component {
 
     render() {
       return (
+        <div>
           <header>Student Feedback Responses</header> 
           <table style = "width: 100%"> 
               <tr> 
@@ -41,10 +42,9 @@ class Lang_Tutor extends React.Component {
               </tr>
           
           </table>
-          
+        </div>
       )
   }
-}
 }
 
 class CheckIn extends React.Component {
