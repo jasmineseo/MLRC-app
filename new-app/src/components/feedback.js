@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import "./styles.css";
 
 class Feedback extends React.Component {
@@ -97,10 +97,3 @@ class Feedback extends React.Component {
 }
 
 export default Feedback;
-// ReactDOM.render(<Feedback />, document.getElementById("root"));
-
-// const rootElement = document.getElementById("root");
-//ReactDOM.render(<App />, rootElement);
-
-const domContainer = document.querySelector("#Feedback");
-//ReactDOM.render(e(Feedback), domContainer);

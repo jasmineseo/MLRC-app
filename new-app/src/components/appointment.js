@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 
 import "./styles.css";
 
@@ -115,8 +115,3 @@ class Appointment extends React.Component {
 }
 
 export default Appointment;
-const domContainer = document.querySelector("#Appointment");
-//ReactDOM.render(e(Appointment), domContainer);
-//ReactDOM.render(<Appointment />, document.getElementById("root"));
-//const rootElement = document.getElementById("root");
-//ReactDOM.render(<Appointment />, rootElement);
