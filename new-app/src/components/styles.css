@@ -1,12 +1,12 @@
-.App {
+  .App {
     font-family: sans-serif;
     text-align: center;
   }
   
-  header {
+  /* header {
     border-top: 1px solid #ccc;
     margin-top: 20px;
-  }
+  } */
   
   input[type="text"]:focus {
     border: 3px solid #555;
