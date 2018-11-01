@@ -10,7 +10,7 @@ class CheckIn extends React.Component {
     this.state = {
       name: "",
       school: "",
-      gradYear: "",
+      year: "",
       service: "",
       language: ""
     };
@@ -29,8 +29,8 @@ class CheckIn extends React.Component {
         this.state.name +
         "\nYou attend " +
         this.state.school +
-        "; Graduation year: " +
-        this.state.gradYear +
+        "; Class year: " +
+        this.state.year +
         "\nVisiting the MLRC for " +
         this.state.service +
         " in " +
@@ -76,14 +76,21 @@ class CheckIn extends React.Component {
           </select>
         </label>
         <label>
-          Graduating in:
-          <input
-            type="text"
-            name="gradYear"
+          Class year:
+          <select
+            type="select"
+            name="year"
             value={this.state.value}
-            placeholder={"e.g., 2019"}
+            placeholder={"class year"}
             onChange={this.handleChange}
-          />
+          >
+            <option value="Select your year">Select your year</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="Other">Other</option>
+          </select>
         </label>
         <br />
         <br />
