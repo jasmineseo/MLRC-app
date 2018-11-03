@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { DateRange } from 'react-date-range';
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 
 import "./styles.css";
 
@@ -11,8 +13,14 @@ class Request_Data extends React.Component {
     super(props);
 
     this.state = {
-      startDate: "",
-      endDate: ""
+      category: "",
+      dateRange: {
+        selection: {
+          startDate: new Date(),
+          endDate: null,
+          key: 'selection',
+        }
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,30 +31,39 @@ class Request_Data extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-//   Want to majorly change this
+//   handleSelect(ranges){
+//     console.log("hi");
+//     console.log(ranges);
+//   }
+
+    handleRangeChange(which) {
+        console.log(which, "dateRange");
+        this.setState({
+        [which]: {
+            ...this.state[which],
+            ..."dateRange",
+        },
+        });
+    }
+
   handleSubmit(event) {
     alert(
       "Your name is " +
-        this.state.name +
+        this.state.category +
         "\nYou attend " +
-        this.state.school +
+        this.state.startDate +
         "; Graduation year: " +
-        this.state.gradYear +
-        "\nVisiting the MLRC for " +
-        this.state.service +
-        " in " +
-        this.state.language
+        this.state.endDate
     );
     event.preventDefault();
   }
 
   render() {
-
-    const selectionRange = {
-        startDate: new Date(),
-        endDate: new Date(),
-        key: 'selection',
-    }
+    // const selectionRange = {
+    //     startDate: this.state.startDate,
+    //     endDate: this.state.endDate,
+    //     key: 'selection',
+    // }
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -71,11 +88,14 @@ class Request_Data extends React.Component {
         <br />
         <br />
         <label>
-          Date Range:
+
           <DateRange
-				ranges={[selectionRange]}
-				onChange={this.handleSelect}
-			/>
+            ranges={[this.state.dateRange.selection]}
+            onChange={this.handleRangeChange.bind(this)}
+            moveRangeOnFirstSelection={false}
+          />
+
+
         </label>
         <br />
         <br />

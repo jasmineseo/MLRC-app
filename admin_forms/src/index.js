@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { render } from "react-dom";
-import Lang_Tutor from "./lang_tutor";
-import Display_Feedback from "./display_feedback";
+// import Lang_Tutor from "./lang_tutor";
+// import Display_Feedback from "./display_feedback";
 import Request_Data from "./request_data";
 
 import "./styles.css";
@@ -13,7 +13,7 @@ const View = () => (
       <header>
         <h1> MLRC </h1>
       </header>
-      <Lang_Tutor />
+      <Request_Data />
     </div>
   );
   
