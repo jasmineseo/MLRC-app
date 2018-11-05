@@ -1,0 +1,43 @@
+ul{
+    list-style:none;
+    display: inline-block;
+    background-color:#4caf50;
+    border-radius: 4px;
+}
+
+ul li{
+    display: inline-block;
+    cursor:pointer;
+    /* background-color:#4caf50; */
+    text-decoration: none;
+    color:white;
+    transition:0.3s;
+    font: 14px Arial;
+
+}
+
+ul li:hover {
+    background-color:#45a049;
+}
+
+ul li.active {
+    background-color:#45a049;
+}
+
+a {
+    font-family: sans-serif;
+    text-decoration: none;
+    padding: 10px 20px;
+    text-align: center;
+    color: white;
+    display: block;
+}
+
+ul li.active a {
+    color: #fff;
+}
+
+/* p {
+    padding-top:15px;
+    font-size:16px;
+} */
