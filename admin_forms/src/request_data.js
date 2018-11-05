@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -17,53 +16,56 @@ class Request_Data extends React.Component {
       dateRange: {
         selection: {
           startDate: new Date(),
-          endDate: null,
+          endDate: new Date(),
           key: 'selection',
         }
       }
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleRangeChange = this.handleRangeChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
+    console.log(this.state.dateRange.selection);
+
   }
 
-//   handleSelect(ranges){
-//     console.log("hi");
-//     console.log(ranges);
-//   }
 
-    handleRangeChange(which) {
-        console.log(which, "dateRange");
+    handleRangeChange(event) {
+
         this.setState({
-        [which]: {
-            ...this.state[which],
-            ..."dateRange",
-        },
+            dateRange: {
+                selection: {
+                  startDate: event.selection.startDate,
+                  endDate: event.selection.endDate,
+                  key: 'selection',
+                }
+            }
+        // dateRange: {
+        //     ...this.state[which],
+        //     ..."dateRange",
+        // },
         });
+        console.log(this.state);
+
     }
 
   handleSubmit(event) {
     alert(
-      "Your name is " +
+      "Your category is " +
         this.state.category +
-        "\nYou attend " +
-        this.state.startDate +
-        "; Graduation year: " +
-        this.state.endDate
+        "\nYou start dates are " +
+        this.state.dateRange.selection.startDate +
+        " - " +
+        this.state.dateRange.selection.endDate
     );
     event.preventDefault();
   }
 
   render() {
-    // const selectionRange = {
-    //     startDate: this.state.startDate,
-    //     endDate: this.state.endDate,
-    //     key: 'selection',
-    // }
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -90,11 +92,10 @@ class Request_Data extends React.Component {
         <label>
 
           <DateRange
+            onChange={this.handleRangeChange}
             ranges={[this.state.dateRange.selection]}
-            onChange={this.handleRangeChange.bind(this)}
             moveRangeOnFirstSelection={false}
           />
-
 
         </label>
         <br />
