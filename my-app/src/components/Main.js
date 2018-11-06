@@ -4,6 +4,8 @@ import Home from "./Home";
 import Appointment from "./appointment";
 import CheckIn from "./checkin";
 import Feedback from "./feedback";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -17,6 +19,8 @@ const Main = () => (
       <Route path="/appointment" component={Appointment} />
       <Route path="/checkin" component={CheckIn} />
       <Route path="/feedback" component={Feedback} />
+      <Route path="/signin" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
     </Switch>
   </main>
 );
