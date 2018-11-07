@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { render } from "react-dom";
 // import Lang_Tutor from "./lang_tutor";
 // import Display_Feedback from "./display_feedback";
-import Request_Data from "./request_data";
+import Request_Data from "./components/request_data";
 
 import "./styles.css";
 import * as serviceWorker from './serviceWorker';

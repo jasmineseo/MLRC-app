@@ -2,18 +2,13 @@ import React from "react";
 // import ReactDOM from "react-dom";
 
 import "./styles.css";
-import * as firebase from "firebase";
+// import * as firebase from "components/firebase";
 
-// Firebase
-var config = {
-  apiKey: "AIzaSyCcvypPOfoIdECYkbhJhVRc6T1gA7aOkbU",
-  authDomain: "mlrc-5a590.firebaseapp.com",
-  databaseURL: "https://mlrc-5a590.firebaseio.com",
-  projectId: "mlrc-5a590",
-  storageBucket: "mlrc-5a590.appspot.com",
-  messagingSenderId: "866673220218"
-};
-firebase.initializeApp(config);
+const CheckInPage = () =>
+  <div>
+    <h1>CheckIn</h1>
+    <CheckIn />
+  </div>
 
 class CheckIn extends React.Component {
   constructor(props) {
@@ -49,12 +44,12 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
-    firebase.database().ref(this.state.date + "/" + this.state.name).set({
-      year: this.state.year,
-      service: this.state.service,
-      language: this.state.language,
-      school: this.state.school
-    });
+    // firebase.database().ref(this.state.date + "/" + this.state.name).set({
+    //   year: this.state.year,
+    //   service: this.state.service,
+    //   language: this.state.language,
+    //   school: this.state.school
+    // });
     event.preventDefault();
   }
 
@@ -169,7 +164,11 @@ class CheckIn extends React.Component {
   }
 }
 
-export default CheckIn;
+export default CheckInPage;
+
+export {
+  CheckIn,
+};
 
 // ReactDOM.render(<CheckIn />, document.getElementById("root"));
 
