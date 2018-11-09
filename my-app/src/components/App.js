@@ -6,6 +6,7 @@ import CheckIn from "./checkin";
 import Feedback from "./feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import Request_Data from "./request_data";
 import { firebase } from '../firebase';
 // import Header from "./Header";
 import "./headerstyle.css";
@@ -30,6 +31,7 @@ const Main = () => (
       <Route path="/checkin" component={CheckIn} />
       <Route path="/feedback" component={Feedback} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/request_data" component={Request_Data} />
     </Switch>
   </main>
 );
@@ -43,6 +45,7 @@ const MainNonAuth = () => (
       <Route path="/feedback" component={Feedback} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/request_data" component={Request_Data} />
     </Switch>
   </main>
 );
@@ -77,6 +80,9 @@ const HeaderNonAuth = () => (
         <li>
           <Link to="/signup">Sign Up</Link>
         </li>
+        <li>
+          <Link to="/request_data">Request Data</Link>
+        </li>
       </ul>
     </nav>
   </header>
@@ -100,6 +106,9 @@ const Header = () => (
         </li>
         <li>
           <Link to="/signup">Sign Up</Link>
+        </li>
+        <li>
+          <Link to="/request_data">Request Data</Link>
         </li>
       </ul>
     </nav>
