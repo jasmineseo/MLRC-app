@@ -23,7 +23,7 @@ class Calendar extends React.Component {
                 <p>
                     Note: You must be logged into Google to view the calendar.
                 </p>
-                <iframe src="https://calendar.google.com/calendar/selfsched?sstoken=UUt5UTdoeWo4R016fGRlZmF1bHR8NWE5OGQxNGViMjlhYmVmZTYwZDQ4NmEwYTk1NDg3Mjg" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                <iframe src="https://calendar.google.com/calendar/selfsched?sstoken=UUt5UTdoeWo4R016fGRlZmF1bHR8NWE5OGQxNGViMjlhYmVmZTYwZDQ4NmEwYTk1NDg3Mjg" width='100%' height="600" frameborder="0" scrolling="no"></iframe>
                 {/* <div dangerouslySetInnerHTML={ this.iframe() } /> */}
             </div>
             );
