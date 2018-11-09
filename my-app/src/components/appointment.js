@@ -1,9 +1,9 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-
+// import Calendar, {CalendarLink} from "./ApptCalendar";
 import "./styles.css";
-
-//const e = React.createElement;
+import { Link, withRouter, } from 'react-router-dom';
+import * as routes from '../constants/routes';
 
 class Appointment extends React.Component {
   constructor(props) {
@@ -109,9 +109,13 @@ class Appointment extends React.Component {
         <br />
         <br />
         <input type="submit" value="Submit" />
+        {/* <CalendarLink /> */}
+        <Link to={routes.APPTCALENDAR}>Make an appointment</Link>
+        {/* <Calendar /> */}
+        {/* <Calendar iframe={'<iframe src="https://calendar.google.com/calendar/b/1/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=g.hmc.edu_0vviqh1aspdhhsdaa028h7flcs%40group.calendar.google.com&amp;color=%2329527A&amp;ctz=America%2FLos_Angeles" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'} />, */}
       </form>
     );
   }
 }
 
-export default Appointment;
+export default withRouter(Appointment);

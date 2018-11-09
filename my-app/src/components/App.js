@@ -6,6 +6,7 @@ import CheckIn from "./checkin";
 import Feedback from "./feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import ApptCalendar from "./ApptCalendar";
 import Request_Data from "./request_data";
 import { firebase } from '../firebase';
 // import Header from "./Header";
@@ -32,6 +33,7 @@ const Main = () => (
       <Route path="/feedback" component={Feedback} />
       <Route path="/signup" component={SignUp} />
       <Route path="/request_data" component={Request_Data} />
+      <Route path="/apptcalendar" component={ApptCalendar}/>
     </Switch>
   </main>
 );
@@ -46,6 +48,7 @@ const MainNonAuth = () => (
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/request_data" component={Request_Data} />
+      <Route path="/apptcalendar" component={ApptCalendar}/>
     </Switch>
   </main>
 );

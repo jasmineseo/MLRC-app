@@ -6,6 +6,7 @@ import CheckIn from "./checkin";
 import Feedback from "./feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import ApptCalendar from "./ApptCalendar";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -21,6 +22,7 @@ const Main = () => (
       <Route path="/feedback" component={Feedback} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/apptcalendar" component={ApptCalendar}/>
     </Switch>
   </main>
 );

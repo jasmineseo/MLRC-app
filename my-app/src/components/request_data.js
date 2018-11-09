@@ -9,7 +9,7 @@ import "./styles.css";
 
 const RequestDataPage = () =>
   <div>
-    <h1>Request_Data</h1>
+    <h1>Request Data</h1>
     <Request_Data />
   </div>
 

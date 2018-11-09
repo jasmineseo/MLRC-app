@@ -6,7 +6,6 @@ import "./styles.css";
 
 const CheckInPage = () =>
   <div>
-    <h1>CheckIn</h1>
     <CheckIn />
   </div>
 
