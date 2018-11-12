@@ -13,13 +13,13 @@ const RequestDataPage = () =>
     <Request_Data />
   </div>
 
-// Get elements
-const dateObj = document.getElementById('11-6-18'); // need to change by what you want
-const langObj = dateObj.getElementById('Korean'); // need to cahgne
+// // Get elements
+// const dateObj = document.getElementById('11-6-18'); // need to change by what you want
+// const langObj = dateObj.getElementById('Korean'); // need to cahgne
 
-// create references
-const dbDateObj = firebase.database().ref().child('11-6-18');
-const dbLangObj = dbDateObj.child('Korean');
+// // create references
+// const dbDateObj = firebase.database().ref().child('11-6-18');
+// const dbLangObj = dbDateObj.child('Korean');
 
 class Request_Data extends React.Component {
   constructor(props) {
