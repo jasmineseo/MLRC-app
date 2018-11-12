@@ -1,13 +1,51 @@
 import React from "react";
-// import ReactDOM from "react-dom";
-import {auth, firebase} from './firebase';
+import ReactDOM from "react-dom";
+
 import "./styles.css";
 
-const CheckInPage = () =>
-  <div>
-    <h1>CheckIn</h1>
-    <CheckIn />
-  </div>
+// Firebase
+var config = {
+    apiKey: "AIzaSyCcvypPOfoIdECYkbhJhVRc6T1gA7aOkbU",
+    authDomain: "mlrc-5a590.firebaseapp.com",
+    databaseURL: "https://mlrc-5a590.firebaseio.com",
+    projectId: "mlrc-5a590",
+    storageBucket: "mlrc-5a590.appspot.com",
+    messagingSenderId: "866673220218"
+  };
+
+class Lang_Tutor extends React.Component {
+// options for admin: add or delete a language/tutor
+// future terations:  adding languages/tutors (and their times) adds new options to the check in form
+// lang_tutor should using connected to google calendar
+
+    // handleSubmit
+
+    render() {
+      return (
+        <div>
+          <header>Student Feedback Responses</header> 
+          <table style = "width: 100%"> 
+              <tr> 
+                  <th>Question 1</th>
+                  <th>Question 2</th>
+                  <th>Question 3</th>
+              </tr>
+              <tr> 
+                  <th>Blah Blah Blah</th>
+                  <th>Blah Blah Blah</th>
+                  <th>Blah Blah Blah</th>
+              </tr>
+              <tr> 
+                  <th>...</th>
+                  <th>>...</th>
+                  <th>>...</th>
+              </tr>
+          
+          </table>
+        </div>
+      )
+  }
+}
 
 class CheckIn extends React.Component {
   constructor(props) {
@@ -16,10 +54,9 @@ class CheckIn extends React.Component {
     this.state = {
       name: "",
       school: "",
-      year: "",
+      gradYear: "",
       service: "",
-      language: "",
-      date:""
+      language: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -36,18 +73,13 @@ class CheckIn extends React.Component {
         this.state.name +
         "\nYou attend " +
         this.state.school +
-        "; Class year: " +
-        this.state.year +
+        "; Graduation year: " +
+        this.state.gradYear +
         "\nVisiting the MLRC for " +
         this.state.service +
         " in " +
         this.state.language
     );
-    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
-      year: this.state.year,
-      service: this.state.service,
-      school: this.state.school
-    });
     event.preventDefault();
   }
 
@@ -64,18 +96,6 @@ class CheckIn extends React.Component {
             name="name"
             value={this.state.value}
             placeholder={"Enter your name"}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Date:
-          <input
-            type="text"
-            name="date"
-            value={this.state.value}
-            placeholder={"MM-DD-YYYY"}
             onChange={this.handleChange}
           />
         </label>
@@ -100,21 +120,14 @@ class CheckIn extends React.Component {
           </select>
         </label>
         <label>
-          Class year:
-          <select
-            type="select"
-            name="year"
+          Graduating in:
+          <input
+            type="text"
+            name="gradYear"
             value={this.state.value}
-            placeholder={"class year"}
+            placeholder={"e.g., 2019"}
             onChange={this.handleChange}
-          >
-            <option value="Select your year">Select your year</option>
-            <option value="1st Year">1st Year</option>
-            <option value="2nd Year">2nd Year</option>
-            <option value="3rd Year">3rd Year</option>
-            <option value="4th Year">4th Year</option>
-            <option value="Other">Other</option>
-          </select>
+          />
         </label>
         <br />
         <br />
@@ -162,11 +175,7 @@ class CheckIn extends React.Component {
   }
 }
 
-export default CheckInPage;
-
-export {
-  CheckIn,
-};
+export default CheckIn;
 
 // ReactDOM.render(<CheckIn />, document.getElementById("root"));
 

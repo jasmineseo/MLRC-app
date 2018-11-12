@@ -1,6 +1,6 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-
+import {auth, firebase} from './firebase';
 import "./styles.css";
 
 //const e = React.createElement;
@@ -35,6 +35,10 @@ class Appointment extends React.Component {
         "\nAppointment for " +
         this.state.language
     );
+    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+      email: this.state.email,
+      school: this.state.school
+    });
     event.preventDefault();
   }
 
