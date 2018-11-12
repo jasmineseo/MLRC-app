@@ -1,17 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import {auth, firebase} from './firebase';
 import "./styles.css";
 
-// Firebase
-var config = {
-    apiKey: "AIzaSyCcvypPOfoIdECYkbhJhVRc6T1gA7aOkbU",
-    authDomain: "mlrc-5a590.firebaseapp.com",
-    databaseURL: "https://mlrc-5a590.firebaseio.com",
-    projectId: "mlrc-5a590",
-    storageBucket: "mlrc-5a590.appspot.com",
-    messagingSenderId: "866673220218"
-  };
 
 class Lang_Tutor extends React.Component {
 // options for admin: add or delete a language/tutor
@@ -48,6 +39,10 @@ class Lang_Tutor extends React.Component {
       "Tutoring sessions: " +
       this.state.tutorTime
     );
+    firebase.database().ref(this.state.language + "/" + this.state.name).set({
+      email: this.state.email,
+      tutorTime: this.state.tutorTime,
+    });
     event.preventDefault();
   }
 
