@@ -7,11 +7,8 @@ import Feedback from "./feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Request_Data from "./request_data";
-import { firebase } from '../firebase';
-// import Header from "./Header";
+import {auth, firebase} from './firebase';
 import "./headerstyle.css";
-
-// import Main from "./Main";
 import { BrowserRouter as Router} from 'react-router-dom';
 
 
@@ -115,14 +112,6 @@ const Header = () => (
   </header>
 );
 
-// const App = () =>
-//   <Router>
-//     <div>
-//       <Cur_Header />
-//       <Cur_Main />
-//     </div>
-//   </Router>
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -132,7 +121,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    firebase.auth.onAuthStateChanged(authUser => {
+    auth.onAuthStateChanged(authUser => {
       authUser
         ? this.setState({ authUser })
         : this.setState({ authUser: null });

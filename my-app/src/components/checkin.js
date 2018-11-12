@@ -1,8 +1,7 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-
+import {auth, firebase} from './firebase';
 import "./styles.css";
-// import * as firebase from "components/firebase";
 
 const CheckInPage = () =>
   <div>
@@ -44,12 +43,11 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
-    // firebase.database().ref(this.state.date + "/" + this.state.name).set({
-    //   year: this.state.year,
-    //   service: this.state.service,
-    //   language: this.state.language,
-    //   school: this.state.school
-    // });
+    firebase.database().ref(this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+      year: this.state.year,
+      service: this.state.service,
+      school: this.state.school
+    });
     event.preventDefault();
   }
 
