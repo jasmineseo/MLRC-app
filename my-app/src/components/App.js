@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import Home from "./Home";
-import Appointment from "./appointment";
-import CheckIn from "./checkin";
-import Feedback from "./feedback";
+import Appointment from "./Appointment";
+import CheckIn from "./CheckIn";
+import Feedback from "./Feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import Request_Data from "./request_data";
+import RequestData from "./RequestData";
 import {auth, firebase} from './firebase';
 import "./headerstyle.css";
 import { BrowserRouter as Router} from 'react-router-dom';
@@ -28,7 +28,7 @@ const Main = () => (
       <Route path="/checkin" component={CheckIn} />
       <Route path="/feedback" component={Feedback} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/request_data" component={Request_Data} />
+      <Route path="/requestdata" component={RequestData} />
     </Switch>
   </main>
 );
@@ -42,7 +42,7 @@ const MainNonAuth = () => (
       <Route path="/feedback" component={Feedback} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/request_data" component={Request_Data} />
+      <Route path="/requestdata" component={RequestData} />
     </Switch>
   </main>
 );
@@ -78,7 +78,7 @@ const HeaderNonAuth = () => (
           <Link to="/signup">Sign Up</Link>
         </li>
         <li>
-          <Link to="/request_data">Request Data</Link>
+          <Link to="/requestdata">Request Data</Link>
         </li>
       </ul>
     </nav>
@@ -105,7 +105,7 @@ const Header = () => (
           <Link to="/signup">Sign Up</Link>
         </li>
         <li>
-          <Link to="/request_data">Request Data</Link>
+          <Link to="/requestdata">Request Data</Link>
         </li>
       </ul>
     </nav>

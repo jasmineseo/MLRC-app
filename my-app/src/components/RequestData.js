@@ -9,8 +9,8 @@ import "./styles.css";
 
 const RequestDataPage = () =>
   <div>
-    <h1>Request_Data</h1>
-    <Request_Data />
+    <h1>Request Data</h1>
+    <RequestData />
   </div>
 
 // // Get elements
@@ -21,7 +21,7 @@ const RequestDataPage = () =>
 // const dbDateObj = firebase.database().ref().child('11-6-18');
 // const dbLangObj = dbDateObj.child('Korean');
 
-class Request_Data extends React.Component {
+class RequestData extends React.Component {
   constructor(props) {
     super(props);
 
@@ -123,7 +123,7 @@ class Request_Data extends React.Component {
 export default RequestDataPage;
 
 export {
-  Request_Data,
+  RequestData,
 };
 
 // ReactDOM.render(<Request_Data />, document.getElementById("root"));

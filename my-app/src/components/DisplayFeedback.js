@@ -32,7 +32,7 @@ ref.on("value", function(snapshot) {
 
 
 // ordering table by most recent
-class Display_Feedback extends React.Component {
+class DisplayFeedback extends React.Component {
     render() {
         return (
           <div>
@@ -188,7 +188,7 @@ class CheckIn extends React.Component {
   }
 }
 
-export default CheckIn;
+export default DisplayFeedback;
 
 // ReactDOM.render(<CheckIn />, document.getElementById("root"));
 
