@@ -102,6 +102,7 @@ class Appointment extends React.Component {
             onChange={this.handleChange}
           >
             <option value="Select a language">Select a language</option>
+            <option value="Arabic">Arabic</option>
             <option value="French">French</option>
             <option value="German">German</option>
             <option value="Italian">Italian</option>
