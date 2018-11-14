@@ -1,4 +1,0 @@
-AuthName "Please put in a password to proceed"
-AuthType Basic
-AuthUserFile /Users/annascomputer/Desktop/my-app/src/.htmypass
-require valid-user

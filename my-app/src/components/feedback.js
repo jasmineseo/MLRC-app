@@ -1,6 +1,7 @@
 import React from "react";
 // import ReactDOM from "react-dom";
 import "./styles.css";
+import {auth,firebase} from './firebase';
 
 class Feedback extends React.Component {
   constructor(props) {
@@ -22,6 +23,12 @@ class Feedback extends React.Component {
   }
 
   handleSubmit(event) {
+    firebase.database().ref(this.state.date + "/" + this.state.language).set({
+      tutor: this.state.tutor,
+      question1: this.state.question1,
+      question2: this.state.question2,
+      question3: this.state.question3,
+    });
     event.preventDefault();
     console.log(this.state);
   }

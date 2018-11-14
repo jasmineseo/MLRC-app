@@ -2,12 +2,26 @@ import React from "react";
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-
+import {auth, firebase} from './firebase';
 import "./styles.css";
 
 // citation: https://github.com/Adphorus/react-date-range
 
-class Request_Data extends React.Component {
+const RequestDataPage = () =>
+  <div>
+    <h1>Request Data</h1>
+    <RequestData />
+  </div>
+
+// // Get elements
+// const dateObj = document.getElementById('11-6-18'); // need to change by what you want
+// const langObj = dateObj.getElementById('Korean'); // need to cahgne
+
+// // create references
+// const dbDateObj = firebase.database().ref().child('11-6-18');
+// const dbLangObj = dbDateObj.child('Korean');
+
+class RequestData extends React.Component {
   constructor(props) {
     super(props);
 
@@ -106,7 +120,11 @@ class Request_Data extends React.Component {
   }
 }
 
-export default Request_Data;
+export default RequestDataPage;
+
+export {
+  RequestData,
+};
 
 // ReactDOM.render(<Request_Data />, document.getElementById("root"));
 

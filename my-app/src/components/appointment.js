@@ -1,6 +1,6 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-// import Calendar, {CalendarLink} from "./ApptCalendar";
+import {auth, firebase} from './firebase';
 import "./styles.css";
 import { Link, withRouter, } from 'react-router-dom';
 import * as routes from '../constants/routes';
@@ -35,6 +35,10 @@ class Appointment extends React.Component {
         "\nAppointment for " +
         this.state.language
     );
+    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+      email: this.state.email,
+      school: this.state.school
+    });
     event.preventDefault();
   }
 

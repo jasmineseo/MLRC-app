@@ -8,56 +8,43 @@ var config = {
     apiKey: "AIzaSyCcvypPOfoIdECYkbhJhVRc6T1gA7aOkbU",
     authDomain: "mlrc-5a590.firebaseapp.com",
     databaseURL: "https://mlrc-5a590.firebaseio.com",
-    projectId: "mlrc-5a590", // this is for check in
+    projectId: "mlrc-5a590",
     storageBucket: "mlrc-5a590.appspot.com",
     messagingSenderId: "866673220218"
   };
 
-// retrieving data from Firebase
-// https://firebase.google.com/docs/database/admin/retrieve-data
+class LangTutor extends React.Component {
+// options for admin: add or delete a language/tutor
+// future terations:  adding languages/tutors (and their times) adds new options to the check in form
+// lang_tutor should using connected to google calendar
 
-// Import Admin SDK
-var admin = require("firebase-admin");
+    // handleSubmit
 
-// Get a database reference to our posts
-var db = admin.database();
-var ref = db.ref("server/saving-data/fireblog/posts");
-
-// Attach an asynchronous callback to read the data at our posts reference
-ref.on("value", function(snapshot) {
-  console.log(snapshot.val());
-}, function (errorObject) {
-  console.log("The read failed: " + errorObject.code);
-});
-
-
-// ordering table by most recent
-class Display_Feedback extends React.Component {
     render() {
-        return (
-          <div>
-            <header>Student Feedback Responses</header> 
-            <table style = "width: 100%"> 
-                <tr> 
-                    <th>Question 1</th>
-                    <th>Question 2</th>
-                    <th>Question 3</th>
-                </tr>
-                <tr> 
-                    <th>Blah Blah Blah</th>
-                    <th>Blah Blah Blah</th>
-                    <th>Blah Blah Blah</th>
-                </tr>
-                <tr> 
-                    <th>...</th>
-                    <th>>...</th>
-                    <th>>...</th>
-                </tr>
-            
-            </table>
-          </div>   
-        )
-    }
+      return (
+        <div>
+          <header>Student Feedback Responses</header> 
+          <table style = "width: 100%"> 
+              <tr> 
+                  <th>Question 1</th>
+                  <th>Question 2</th>
+                  <th>Question 3</th>
+              </tr>
+              <tr> 
+                  <th>Blah Blah Blah</th>
+                  <th>Blah Blah Blah</th>
+                  <th>Blah Blah Blah</th>
+              </tr>
+              <tr> 
+                  <th>...</th>
+                  <th>>...</th>
+                  <th>>...</th>
+              </tr>
+          
+          </table>
+        </div>
+      )
+  }
 }
 
 class CheckIn extends React.Component {
@@ -188,7 +175,7 @@ class CheckIn extends React.Component {
   }
 }
 
-export default CheckIn;
+export default LangTutor;
 
 // ReactDOM.render(<CheckIn />, document.getElementById("root"));
 
