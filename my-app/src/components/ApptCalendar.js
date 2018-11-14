@@ -23,12 +23,20 @@ class Calendar extends React.Component {
                 <p>
                     Note: You must be logged into Google to view the calendar.
                 </p>
-                <iframe src="https://calendar.google.com/calendar/selfsched?sstoken=UUt5UTdoeWo4R016fGRlZmF1bHR8NWE5OGQxNGViMjlhYmVmZTYwZDQ4NmEwYTk1NDg3Mjg" width='100%' height="600" frameborder="0" scrolling="no"></iframe>
+                {/* <div dangerouslySetInnerHTML={{__html: html}}></div> */}
+
+                {/* Calendly Version of the Calendar */}
+                <iframe src="https://calendly.com/mlrctesting/arabic-tutoring" width='100%' height="600" frameborder="0" scrolling="yes"></iframe>
+                
+                {/* google version */}
+                {/* <iframe src="https://calendar.google.com/calendar/selfsched?sstoken=UUt5UTdoeWo4R016fGRlZmF1bHR8NWE5OGQxNGViMjlhYmVmZTYwZDQ4NmEwYTk1NDg3Mjg" width='100%' height="600" frameborder="0" scrolling="no"></iframe> */}
                 {/* <div dangerouslySetInnerHTML={ this.iframe() } /> */}
             </div>
             );
     }
 }
+// var html = '<div class="calendly-inline-widget" data-url="https://calendly.com/mlrctesting/arabic-tutoring" style="min-width:320px;height:580px;"></div>'
+
 Calendar.propTypes = {
 
 };
