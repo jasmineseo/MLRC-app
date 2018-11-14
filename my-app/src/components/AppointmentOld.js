@@ -10,6 +10,9 @@ class Appointment extends React.Component {
     super(props);
 
     this.state = {
+      name: "",
+      school: "",
+      email: "",
       language: ""
     };
 
@@ -23,13 +26,19 @@ class Appointment extends React.Component {
 
   handleSubmit(event) {
     alert(
-        "Appointment for " +
+      "Your name is " +
+        this.state.name +
+        "; your email is: " +
+        this.state.email +
+        "\nYou attend " +
+        this.state.school +
+        "\nAppointment for " +
         this.state.language
     );
-    // firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
-    //   email: this.state.email,
-    //   school: this.state.school
-    // });
+    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+      email: this.state.email,
+      school: this.state.school
+    });
     event.preventDefault();
     this.props.history.push('/apptcalendar');
   }
@@ -40,6 +49,50 @@ class Appointment extends React.Component {
         <header>
           <h2> Schedule an Appointment </h2>
         </header>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="name"
+            value={this.state.value}
+            placeholder={"Enter your name"}
+            onChange={this.handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Email:
+          <input
+            type="text"
+            name="email"
+            value={this.state.value}
+            placeholder={"youremail@mail.com"}
+            onChange={this.handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          School:
+          <select
+            value={this.state.value}
+            name="school"
+            type="select"
+            placeholder={"Select your school"}
+            onChange={this.handleChange}
+          >
+            <option value="Select your school">Select your school</option>
+            <option value="CMC">CMC</option>
+            <option value="HMC">HMC</option>
+            <option value="Pomona">Pomona</option>
+            <option value="Pitzer">Pitzer</option>
+            <option value="Scripps">Scripps</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <br />
+        <br />
         <label>
           Language:
           <select

@@ -3,27 +3,46 @@ import "./styles.css";
 // import ReactDOM from "react-dom";
 import * as routes from '../constants/routes';
 import { Link, withRouter, } from 'react-router-dom';
+import {Arabic, French, } from './CalendlyLinks';
 
+const ApptCalendar = ({language}) => {
+    if (language == "Arabic") {
+        return(<Arabic/>)
+    } else if (language == "French") {
+        return(<French/>)
+    }
+
+}
 
 class Calendar extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            language: "French",
+        };
     }
-    // iframe(){
-    //     return {
-    //         __html: this.props.iframe
-    //         }
-    // }
+    render() {
+        return (
+            <div>
+                <ApptCalendar language={this.state.language} />
+            </div>
+        )
+    }
+}
+
+class CalendarOld extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (
             <div>
                 <h1>
-                    Make an Appointment
+                    Schedule an Appointment
                 </h1>
                 <p>
                     Note: You must be logged into Google to view the calendar.
                 </p>
-                {/* <div dangerouslySetInnerHTML={{__html: html}}></div> */}
 
                 {/* Calendly Version of the Calendar */}
                 <iframe src="https://calendly.com/mlrctesting/arabic-tutoring" width='100%' height="600" frameborder="0" scrolling="yes"></iframe>
@@ -35,7 +54,6 @@ class Calendar extends React.Component {
             );
     }
 }
-// var html = '<div class="calendly-inline-widget" data-url="https://calendly.com/mlrctesting/arabic-tutoring" style="min-width:320px;height:580px;"></div>'
 
 Calendar.propTypes = {
 
