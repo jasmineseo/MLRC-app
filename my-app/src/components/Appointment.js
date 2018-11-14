@@ -2,23 +2,18 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import {auth, firebase} from './firebase';
 import "./styles.css";
+import { Link, withRouter, } from 'react-router-dom';
+import * as routes from '../constants/routes';
 
-const CheckInPage = () =>
-  <div>
-    <CheckIn />
-  </div>
-
-class CheckIn extends React.Component {
+class Appointment extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: "",
       school: "",
-      year: "",
-      service: "",
-      language: "",
-      date:""
+      email: "",
+      language: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,18 +28,15 @@ class CheckIn extends React.Component {
     alert(
       "Your name is " +
         this.state.name +
+        "; your email is: " +
+        this.state.email +
         "\nYou attend " +
         this.state.school +
-        "; Class year: " +
-        this.state.year +
-        "\nVisiting the MLRC for " +
-        this.state.service +
-        " in " +
+        "\nAppointment for " +
         this.state.language
     );
-    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
-      year: this.state.year,
-      service: this.state.service,
+    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+      email: this.state.email,
       school: this.state.school
     });
     event.preventDefault();
@@ -54,7 +46,7 @@ class CheckIn extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <header>
-          <h2> Check in to the MLRC </h2>
+          <h2> Schedule an Appointment </h2>
         </header>
         <label>
           Name:
@@ -69,12 +61,12 @@ class CheckIn extends React.Component {
         <br />
         <br />
         <label>
-          Date:
+          Email:
           <input
             type="text"
-            name="date"
+            name="email"
             value={this.state.value}
-            placeholder={"MM-DD-YYYY"}
+            placeholder={"youremail@mail.com"}
             onChange={this.handleChange}
           />
         </label>
@@ -89,7 +81,7 @@ class CheckIn extends React.Component {
             placeholder={"Select your school"}
             onChange={this.handleChange}
           >
-            <option value="Select your school">Select your School</option>
+            <option value="Select your school">Select your school</option>
             <option value="CMC">CMC</option>
             <option value="HMC">HMC</option>
             <option value="Pomona">Pomona</option>
@@ -98,45 +90,10 @@ class CheckIn extends React.Component {
             <option value="Other">Other</option>
           </select>
         </label>
-        <label>
-          Class year:
-          <select
-            type="select"
-            name="year"
-            value={this.state.value}
-            placeholder={"class year"}
-            onChange={this.handleChange}
-          >
-            <option value="Select your year">Select your year</option>
-            <option value="1st Year">1st Year</option>
-            <option value="2nd Year">2nd Year</option>
-            <option value="3rd Year">3rd Year</option>
-            <option value="4th Year">4th Year</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
         <br />
         <br />
         <label>
-          Visiting the MLRC for:
-          <select
-            value={this.state.value}
-            name="service"
-            type="select"
-            placeholder={"Select a service"}
-            onChange={this.handleChange}
-          >
-            <option value="Select a service">Select a service</option>
-            <option value="Conversation">Conversation</option>
-            <option value="Homework">Homework</option>
-            <option value="Paper writing">Paper writing</option>
-            <option value="Pronunciation">Pronunciation</option>
-            <option value="Grammar review">Grammar review</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
-        <label>
-          in
+          Language:
           <select
             value={this.state.value}
             name="language"
@@ -145,6 +102,7 @@ class CheckIn extends React.Component {
             onChange={this.handleChange}
           >
             <option value="Select a language">Select a language</option>
+            <option value="Arabic">Arabic</option>
             <option value="French">French</option>
             <option value="German">German</option>
             <option value="Italian">Italian</option>
@@ -156,18 +114,13 @@ class CheckIn extends React.Component {
         <br />
         <br />
         <input type="submit" value="Submit" />
+        {/* <CalendarLink /> */}
+        <Link to={routes.APPTCALENDAR}>Make an appointment</Link>
+        {/* <Calendar /> */}
+        {/* <Calendar iframe={'<iframe src="https://calendar.google.com/calendar/b/1/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=g.hmc.edu_0vviqh1aspdhhsdaa028h7flcs%40group.calendar.google.com&amp;color=%2329527A&amp;ctz=America%2FLos_Angeles" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>'} />, */}
       </form>
     );
   }
 }
 
-export default CheckInPage;
-
-export {
-  CheckIn,
-};
-
-// ReactDOM.render(<CheckIn />, document.getElementById("root"));
-
-// const rootElement = document.getElementById("root");
-//ReactDOM.render(<App />, rootElement);
+export default withRouter(Appointment);

@@ -8,7 +8,7 @@ class Feedback extends React.Component {
     super(props);
 
     this.state = {
-      tutor: "",
+      language: "",
       question1: "",
       question2: "",
       question3: ""
@@ -24,7 +24,7 @@ class Feedback extends React.Component {
 
   handleSubmit(event) {
     firebase.database().ref(this.state.date + "/" + this.state.language).set({
-      tutor: this.state.tutor,
+      language: this.state.language,
       question1: this.state.question1,
       question2: this.state.question2,
       question3: this.state.question3,
@@ -40,19 +40,22 @@ class Feedback extends React.Component {
           <h2> Send us feedback! </h2>
         </header>
         <label>
-          Which tutor did you visit?
+          Which language did you visit for?
           <br />
           <select
             value={this.state.value}
-            name="tutor"
+            name="language"
             type="select"
-            placeholder={"Select a tutor"}
+            placeholder={"Select a language"}
             onChange={this.handleChange}
           >
-            <option value="Select a tutor">Select a tutor</option>
-            <option value="Tutor 1">Tutor 1</option>
-            <option value="Tutor 2">Tutor 2</option>
-            <option value="Tutor 3">Tutor 3</option>
+            <option value="Select a language">Select a language</option>
+            <option value="Arabic">Arabic</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Italian">Italian</option>
+            <option value="Korean">Korean</option>
+            <option value="Spanish">Spanish</option>
             <option value="Other">Other</option>
           </select>
         </label>
