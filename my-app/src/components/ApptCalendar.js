@@ -24,6 +24,9 @@ class Calendar extends React.Component {
     render() {
         return (
             <div>
+                <h1>
+                    Schedule an Appointment
+                </h1>
                 <ApptCalendar language={this.state.language} />
             </div>
         )
