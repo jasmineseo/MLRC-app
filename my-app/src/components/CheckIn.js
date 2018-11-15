@@ -14,6 +14,7 @@ class CheckIn extends React.Component {
 
     this.state = {
       name: "",
+      email: "", 
       school: "",
       year: "",
       service: "",
@@ -33,6 +34,8 @@ class CheckIn extends React.Component {
     alert(
       "Your name is " +
         this.state.name +
+        "\nYour email is " + 
+        this.state.email + 
         "\nYou attend " +
         this.state.school +
         "; Class year: " +
@@ -63,6 +66,18 @@ class CheckIn extends React.Component {
             name="name"
             value={this.state.value}
             placeholder={"Enter your name"}
+            onChange={this.handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Email:
+          <input
+            type="text"
+            name="email"
+            value={this.state.value}
+            placeholder={"youremail@mail.com"}
             onChange={this.handleChange}
           />
         </label>
