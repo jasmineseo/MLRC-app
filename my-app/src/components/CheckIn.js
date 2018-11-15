@@ -2,6 +2,7 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import {auth, firebase} from './firebase';
 import "./styles.css";
+import axios from 'axios';
 
 const CheckInPage = () =>
   <div>
@@ -51,6 +52,11 @@ class CheckIn extends React.Component {
       school: this.state.school
     });
     event.preventDefault();
+    // const { name, email, school, year, service, language, date } = this.state
+    // const form = await axios.post('/api/form', {
+    //   name,
+    //   email
+    // })
   }
 
   render() {
