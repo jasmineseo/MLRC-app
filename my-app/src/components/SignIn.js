@@ -6,7 +6,6 @@ import * as routes from '../constants/routes';
 
 const SignInPage = ({ history }) =>
   <div>
-    <h1>SignIn</h1>
     <SignInForm history={history} />
     <SignUpLink />
   </div>
@@ -63,6 +62,9 @@ class SignInForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
+      <header>
+        <h2>Sign In</h2>
+      </header>
         <input
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}

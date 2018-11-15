@@ -1,6 +1,6 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-import "./styles.css";
+// import "./styles.css";
 import {auth,firebase} from './firebase';
 
 class Feedback extends React.Component {

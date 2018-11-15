@@ -3,7 +3,7 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import {auth, firebase} from './firebase';
-import "./styles.css";
+// import "./styles.css";
 
 // citation: https://github.com/Adphorus/react-date-range
 

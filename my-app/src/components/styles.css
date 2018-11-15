@@ -1,8 +1,56 @@
   .App {
-    font-family: sans-serif;
     text-align: center;
   }
   
+
+  * {
+    font-family: Helvetica,  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul{
+    list-style:none;
+    display: inline-block;
+    background-color:#4caf50;
+    border-radius: 4px;
+}
+
+ul li{
+    display: inline-block;
+    cursor:pointer;
+    /* background-color:#4caf50; */
+    text-decoration: none;
+    color:white;
+    transition:0.3s;
+    /*font: 14px;*/
+
+}
+
+ul li:hover {
+    background-color:#45a049;
+}
+
+ul li.active {
+    background-color:#45a049;
+}
+
+a {
+    font-family: sans-serif;
+    text-decoration: none;
+    padding: 10px 20px;
+    text-align: center;
+    color: white;
+    display: block;
+}
+
+ul li.active a {
+    color: #fff;
+}
+
+/* p {
+    padding-top:15px;
+    font-size:16px;
+} */
+
   /* header {
     border-top: 1px solid #ccc;
     margin-top: 20px;
@@ -14,7 +62,7 @@
   
   input[type="text"],
   select {
-    width: 100%;
+    width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -25,7 +73,7 @@
   }
   
   input[type="submit"] {
-    width: 100%;
+    width: 50%;
     background-color: #4caf50;
     color: white;
     padding: 14px 20px;
@@ -44,16 +92,24 @@
     background-color: #f2f2f2;
     padding: 20px;
   }
-  
+  /*
   input[type="text"] {
-    width: 100%;
+    width: 50%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
   }
+  */
   
+  input[type="password"] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+  }
+
   textarea {
-    width: 100%;
+    width: 50%;
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;

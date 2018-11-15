@@ -8,7 +8,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import RequestData from "./RequestData";
 import {auth, firebase} from './firebase';
-import "./headerstyle.css";
+import "./styles.css";
 import { BrowserRouter as Router} from 'react-router-dom';
 
 
@@ -66,7 +66,7 @@ const HeaderNonAuth = () => (
           <Link to="/appointment">Appointment</Link>
         </li>
         <li>
-          <Link to="/checkin">Check in</Link>
+          <Link to="/checkin">Check In</Link>
         </li>
         <li>
           <Link to="/feedback">Feedback</Link>
@@ -96,7 +96,7 @@ const Header = () => (
           <Link to="/appointment">Appointment</Link>
         </li>
         <li>
-          <Link to="/checkin">Check in</Link>
+          <Link to="/checkin">Check In</Link>
         </li>
         <li>
           <Link to="/feedback">Feedback</Link>
