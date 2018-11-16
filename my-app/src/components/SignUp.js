@@ -5,7 +5,6 @@ import * as routes from '../constants/routes';
 
 const SignUpPage = ({ history }) =>
   <div>
-    <h1>SignUp</h1>
     <SignUpForm history={history} />
   </div>
     
@@ -67,6 +66,11 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
+      <header>
+        <h2>
+          Sign Up
+        </h2>
+      </header>
         <input
           value={username}
           onChange={event => this.setState(byPropKey('username', event.target.value))}

@@ -3,6 +3,11 @@ import React from "react";
 // import "./styles.css";
 import {auth,firebase} from './firebase';
 
+const FeedbackPage = () =>
+  <div>
+    <Feedback />
+  </div>
+
 class Feedback extends React.Component {
   constructor(props) {
     super(props);
@@ -103,4 +108,8 @@ class Feedback extends React.Component {
   }
 }
 
-export default Feedback;
+export default FeedbackPage;
+
+export { 
+  Feedback,
+}

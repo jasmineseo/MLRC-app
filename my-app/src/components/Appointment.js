@@ -5,6 +5,11 @@ import {auth, firebase} from './firebase';
 
 //const e = React.createElement;
 
+const AppointmentPage = () =>
+  <div>
+    <Appointment />
+  </div>
+
 class Appointment extends React.Component {
   constructor(props) {
     super(props);
@@ -118,4 +123,8 @@ class Appointment extends React.Component {
   }
 }
 
-export default Appointment;
+export default AppointmentPage;
+
+export {
+  Appointment,
+}
