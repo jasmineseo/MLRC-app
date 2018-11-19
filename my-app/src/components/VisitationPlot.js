@@ -10,6 +10,11 @@ var margin = {top: 20, right: 50, bottom: 30, left: 50};
 var width = 400 - margin.left - margin.right;
 var height = 300 - margin.top - margin.bottom;
 
+var testData = [{week: "week1", Spanish: 4, Korean: 9, Arabic: 5, French: 2},
+                {week: "week2", Spanish: 9, Korean: 10, Arabic: 3, French: 1},
+                {week: "week3", Spanish: 6, Korean: 6, Arabic: 8, French: 4}];
+
+var testCategories = ["Spanish", "Korean", "Arabic", "French"];
 
 
 const VisitationPlotsPage = () =>
@@ -18,15 +23,32 @@ const VisitationPlotsPage = () =>
         <Visitation_Plots />
     </div>
 
+
+
+
+
 class Visitation_Plots extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            category: "",
+            startDate: new Date(),
+            endDate: new Date(),
+            data: testData,
+        }
+    };
+
+    // reformatData() {
+    //     //reformat data
+    //     var dataStackLayout = d3.stack().keys(testCategories)
+    //                                     .offset(d3.stackOffsetDiverging)
+    //                                     (this.state.data)
+    //     this.setState({ [this.state.data]: dataStackLayout })
+    // }
+
     render() {
-
-        var testData = [{week: "week1", Spanish: 4, Korean: 9, Arabic: 5, French: 2},
-                        {week: "week2", Spanish: 9, Korean: 10, Arabic: 3, French: 1},
-                        {week: "week3", Spanish: 6, Korean: 6, Arabic: 8, French: 4}];
-
-        var testCategories = ["Spanish", "Korean", "Arabic", "French"];
 
         //reformat data
         var dataStackLayout = d3.stack().keys(testCategories)
@@ -44,8 +66,11 @@ class Visitation_Plots extends React.Component {
         var color = d3.scaleOrdinal(d3.schemeCategory10); //get default colors
 
         var xAxis = d3.axisBottom(xRange);
+        var yAxis = d3.axisLeft(yRange)
 
-        var svg = d3.select("body").append("svg")
+        //set up the svg
+        const svg = d3.select("body")
+                    .append("svg")
                     .attr("width", width + margin.left + margin.right)
                     .attr("height", height + margin.top + margin.bottom)
                     .append("g")
@@ -56,8 +81,6 @@ class Visitation_Plots extends React.Component {
         xRange.domain(dataStackLayout[0].map(function (d) {
             return d.data.week;
         }));
-
-        // console.log(dataStackLayout[0][0][1]) 
 
         //set up y axis
         yRange.domain([0,
@@ -94,10 +117,10 @@ class Visitation_Plots extends React.Component {
             .attr("class", "axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis)
+        
+        svg.append("g")
+            .call(yAxis)
 
-        // svg.append("g")
-        //     .attr("transform", `translate(${width - margin.right}, ${margin.top})`)
-        //     .call(legend);
             
         // return svg.node();
         return <div></div>

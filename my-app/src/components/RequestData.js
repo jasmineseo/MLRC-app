@@ -13,13 +13,6 @@ const RequestDataPage = () =>
     <RequestData />
   </div>
 
-// // Get elements
-// const dateObj = document.getElementById('11-6-18'); // need to change by what you want
-// const langObj = dateObj.getElementById('Korean'); // need to cahgne
-
-// // create references
-// const dbDateObj = firebase.database().ref().child('11-6-18');
-// const dbLangObj = dbDateObj.child('Korean');
 
 class RequestData extends React.Component {
   constructor(props) {
@@ -58,10 +51,6 @@ class RequestData extends React.Component {
                   key: 'selection',
                 }
             }
-        // dateRange: {
-        //     ...this.state[which],
-        //     ..."dateRange",
-        // },
         });
         console.log(this.state);
 
@@ -125,8 +114,3 @@ export default RequestDataPage;
 export {
   RequestData,
 };
-
-// ReactDOM.render(<Request_Data />, document.getElementById("root"));
-
-// const rootElement = document.getElementById("root");
-//ReactDOM.render(<App />, rootElement);
