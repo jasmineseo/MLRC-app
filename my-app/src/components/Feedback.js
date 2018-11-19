@@ -29,7 +29,7 @@ class Feedback extends React.Component {
   }
 
   handleSubmit(event) {
-    firebase.database().ref(this.state.date).set({
+    firebase.database().ref("feedback" + this.state.date).set({
       language: this.state.language,
       question1: this.state.question1,
       question2: this.state.question2,
