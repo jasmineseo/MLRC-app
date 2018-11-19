@@ -35,7 +35,8 @@ class Appointment extends React.Component {
         "\nAppointment for " +
         this.state.language
     );
-    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.name).set({
+      language: this.state.language,
       email: this.state.email,
       school: this.state.school
     });

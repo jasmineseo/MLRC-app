@@ -8,6 +8,7 @@ class Feedback extends React.Component {
     super(props);
 
     this.state = {
+      date: "",
       language: "",
       question1: "",
       question2: "",
@@ -23,7 +24,7 @@ class Feedback extends React.Component {
   }
 
   handleSubmit(event) {
-    firebase.database().ref(this.state.date + "/" + this.state.language).set({
+    firebase.database().ref(this.state.date).set({
       language: this.state.language,
       question1: this.state.question1,
       question2: this.state.question2,
@@ -58,6 +59,18 @@ class Feedback extends React.Component {
             <option value="Spanish">Spanish</option>
             <option value="Other">Other</option>
           </select>
+        </label>
+        <br />
+        <br />
+        <label>
+          Date:
+          <input
+            type="text"
+            name="date"
+            value={this.state.value}
+            placeholder={"MM-DD-YYYY"}
+            onChange={this.handleChange}
+          />
         </label>
         <br />
         <br />

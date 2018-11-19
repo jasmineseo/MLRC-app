@@ -45,7 +45,8 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
-    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.name).set({
+      language: this.state.language,
       year: this.state.year,
       service: this.state.service,
       school: this.state.school
