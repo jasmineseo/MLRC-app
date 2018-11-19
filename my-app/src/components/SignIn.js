@@ -6,10 +6,6 @@ import * as routes from '../constants/routes';
 
 const SignInPage = ({ history }) =>
   <div>
-<<<<<<< HEAD
-=======
-    <h1>Sign In</h1>
->>>>>>> 989a82934ae38b062f29a075f1fd9063643b9134
     <SignInForm history={history} />
     <SignUpLink />
   </div>
