@@ -41,20 +41,20 @@ class RequestData extends React.Component {
   }
 
 
-    handleRangeChange(event) {
+  handleRangeChange(event) {
 
-        this.setState({
-            dateRange: {
-                selection: {
-                  startDate: event.selection.startDate,
-                  endDate: event.selection.endDate,
-                  key: 'selection',
-                }
-            }
-        });
-        console.log(this.state);
+      this.setState({
+          dateRange: {
+              selection: {
+                startDate: event.selection.startDate,
+                endDate: event.selection.endDate,
+                key: 'selection',
+              }
+          }
+      });
+      console.log(this.state);
 
-    }
+  }
 
   handleSubmit(event) {
     alert(
