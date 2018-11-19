@@ -14,6 +14,7 @@ class CheckIn extends React.Component {
 
     this.state = {
       name: "",
+      email: "", 
       school: "",
       year: "",
       service: "",
@@ -33,6 +34,8 @@ class CheckIn extends React.Component {
     alert(
       "Your name is " +
         this.state.name +
+        "\nYour email is " + 
+        this.state.email + 
         "\nYou attend " +
         this.state.school +
         "; Class year: " +
@@ -42,7 +45,8 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
-    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.name).set({
+      language: this.state.language,
       year: this.state.year,
       service: this.state.service,
       school: this.state.school
@@ -63,6 +67,18 @@ class CheckIn extends React.Component {
             name="name"
             value={this.state.value}
             placeholder={"Enter your name"}
+            onChange={this.handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Email:
+          <input
+            type="text"
+            name="email"
+            value={this.state.value}
+            placeholder={"youremail@mail.com"}
             onChange={this.handleChange}
           />
         </label>
@@ -145,6 +161,7 @@ class CheckIn extends React.Component {
             onChange={this.handleChange}
           >
             <option value="Select a language">Select a language</option>
+            <option value="Arabic">Arabic</option>
             <option value="French">French</option>
             <option value="German">German</option>
             <option value="Italian">Italian</option>

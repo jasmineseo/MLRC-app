@@ -40,7 +40,8 @@ class Appointment extends React.Component {
         "\nAppointment for " +
         this.state.language
     );
-    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
+    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.name).set({
+      language: this.state.language,
       email: this.state.email,
       school: this.state.school
     });
@@ -107,6 +108,7 @@ class Appointment extends React.Component {
             onChange={this.handleChange}
           >
             <option value="Select a language">Select a language</option>
+            <option value="Arabic">Arabic</option>
             <option value="French">French</option>
             <option value="German">German</option>
             <option value="Italian">Italian</option>
