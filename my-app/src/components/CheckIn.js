@@ -3,17 +3,23 @@ import React from "react";
 import {auth, firebase} from './firebase';
 import "./styles.css";
 
-//const e = React.createElement;
+const CheckInPage = () =>
+  <div>
+    <CheckIn />
+  </div>
 
-class Appointment extends React.Component {
+class CheckIn extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: "",
+      email: "", 
       school: "",
-      email: "",
-      language: ""
+      year: "",
+      service: "",
+      language: "",
+      date:""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,15 +34,21 @@ class Appointment extends React.Component {
     alert(
       "Your name is " +
         this.state.name +
-        "; your email is: " +
-        this.state.email +
+        "\nYour email is " + 
+        this.state.email + 
         "\nYou attend " +
         this.state.school +
-        "\nAppointment for " +
+        "; Class year: " +
+        this.state.year +
+        "\nVisiting the MLRC for " +
+        this.state.service +
+        " in " +
         this.state.language
     );
-    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
-      email: this.state.email,
+    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.name).set({
+      language: this.state.language,
+      year: this.state.year,
+      service: this.state.service,
       school: this.state.school
     });
     event.preventDefault();
@@ -46,7 +58,7 @@ class Appointment extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <header>
-          <h2> Schedule an Appointment </h2>
+          <h2> Check in to the MLRC </h2>
         </header>
         <label>
           Name:
@@ -73,6 +85,18 @@ class Appointment extends React.Component {
         <br />
         <br />
         <label>
+          Date:
+          <input
+            type="text"
+            name="date"
+            value={this.state.value}
+            placeholder={"MM-DD-YYYY"}
+            onChange={this.handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
           School:
           <select
             value={this.state.value}
@@ -81,7 +105,7 @@ class Appointment extends React.Component {
             placeholder={"Select your school"}
             onChange={this.handleChange}
           >
-            <option value="Select your school">Select your school</option>
+            <option value="Select your school">Select your School</option>
             <option value="CMC">CMC</option>
             <option value="HMC">HMC</option>
             <option value="Pomona">Pomona</option>
@@ -90,10 +114,45 @@ class Appointment extends React.Component {
             <option value="Other">Other</option>
           </select>
         </label>
+        <label>
+          Class year:
+          <select
+            type="select"
+            name="year"
+            value={this.state.value}
+            placeholder={"class year"}
+            onChange={this.handleChange}
+          >
+            <option value="Select your year">Select your year</option>
+            <option value="1st Year">1st Year</option>
+            <option value="2nd Year">2nd Year</option>
+            <option value="3rd Year">3rd Year</option>
+            <option value="4th Year">4th Year</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
         <br />
         <br />
         <label>
-          Language:
+          Visiting the MLRC for:
+          <select
+            value={this.state.value}
+            name="service"
+            type="select"
+            placeholder={"Select a service"}
+            onChange={this.handleChange}
+          >
+            <option value="Select a service">Select a service</option>
+            <option value="Conversation">Conversation</option>
+            <option value="Homework">Homework</option>
+            <option value="Paper writing">Paper writing</option>
+            <option value="Pronunciation">Pronunciation</option>
+            <option value="Grammar review">Grammar review</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <label>
+          in
           <select
             value={this.state.value}
             name="language"
@@ -102,6 +161,7 @@ class Appointment extends React.Component {
             onChange={this.handleChange}
           >
             <option value="Select a language">Select a language</option>
+            <option value="Arabic">Arabic</option>
             <option value="French">French</option>
             <option value="German">German</option>
             <option value="Italian">Italian</option>
@@ -118,4 +178,13 @@ class Appointment extends React.Component {
   }
 }
 
-export default Appointment;
+export default CheckInPage;
+
+export {
+  CheckIn,
+};
+
+// ReactDOM.render(<CheckIn />, document.getElementById("root"));
+
+// const rootElement = document.getElementById("root");
+//ReactDOM.render(<App />, rootElement);
