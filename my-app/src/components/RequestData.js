@@ -19,7 +19,7 @@ class RequestData extends React.Component {
     super(props);
 
     this.state = {
-      category: "",
+      catkeegory: "",
       dateRange: {
         selection: {
           startDate: new Date(),
