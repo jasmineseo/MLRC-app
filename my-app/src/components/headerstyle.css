@@ -1,3 +1,7 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 ul{
     list-style:none;
     display: inline-block;
@@ -12,7 +16,7 @@ ul li{
     text-decoration: none;
     color:white;
     transition:0.3s;
-    font: 14px Arial;
+    /*font: 14px;*/
 
 }
 

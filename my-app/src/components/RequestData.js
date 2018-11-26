@@ -9,24 +9,17 @@ import "./styles.css";
 
 const RequestDataPage = () =>
   <div>
-    <h1>Request_Data</h1>
-    <Request_Data />
+    <h1>Request Data</h1>
+    <RequestData />
   </div>
 
-// // Get elements
-// const dateObj = document.getElementById('11-6-18'); // need to change by what you want
-// const langObj = dateObj.getElementById('Korean'); // need to cahgne
 
-// // create references
-// const dbDateObj = firebase.database().ref().child('11-6-18');
-// const dbLangObj = dbDateObj.child('Korean');
-
-class Request_Data extends React.Component {
+class RequestData extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      category: "",
+      catkeegory: "",
       dateRange: {
         selection: {
           startDate: new Date(),
@@ -48,24 +41,20 @@ class Request_Data extends React.Component {
   }
 
 
-    handleRangeChange(event) {
+  handleRangeChange(event) {
 
-        this.setState({
-            dateRange: {
-                selection: {
-                  startDate: event.selection.startDate,
-                  endDate: event.selection.endDate,
-                  key: 'selection',
-                }
-            }
-        // dateRange: {
-        //     ...this.state[which],
-        //     ..."dateRange",
-        // },
-        });
-        console.log(this.state);
+      this.setState({
+          dateRange: {
+              selection: {
+                startDate: event.selection.startDate,
+                endDate: event.selection.endDate,
+                key: 'selection',
+              }
+          }
+      });
+      console.log(this.state);
 
-    }
+  }
 
   handleSubmit(event) {
     alert(
@@ -123,10 +112,5 @@ class Request_Data extends React.Component {
 export default RequestDataPage;
 
 export {
-  Request_Data,
+  RequestData,
 };
-
-// ReactDOM.render(<Request_Data />, document.getElementById("root"));
-
-// const rootElement = document.getElementById("root");
-//ReactDOM.render(<App />, rootElement);

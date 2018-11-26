@@ -4,7 +4,7 @@ import {auth, firebase} from './firebase';
 import "./styles.css";
 
 
-class Lang_Tutor extends React.Component {
+class LangTutor extends React.Component {
 // options for admin: add or delete a language/tutor
 // future terations:  adding languages/tutors (and their times) adds new options to the check in form
 // lang_tutor should using connected to google calendar
@@ -117,8 +117,10 @@ class Lang_Tutor extends React.Component {
   }
 }
 
-export default Lang_Tutor;
+export default LangTutor;
+
+// ReactDOM.render(<CheckIn />, document.getElementById("root"));
 
 export {
-  Lang_Tutor;
+  LangTutor;
 };
