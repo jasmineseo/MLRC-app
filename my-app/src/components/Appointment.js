@@ -26,10 +26,9 @@ class Appointment extends React.Component {
         "Appointment for " +
         this.state.language
     );
-    // firebase.database().ref("appointment/" + this.state.date + "/" + this.state.language + "/" + this.state.name).set({
-    //   email: this.state.email,
-    //   school: this.state.school
-    // });
+    firebase.database().ref("appointment/" + this.state.date + "/" + this.state.name).set({
+      language: this.state.language,
+    });
     event.preventDefault();
     this.props.history.push('/apptcalendar');
   }

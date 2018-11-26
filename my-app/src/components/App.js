@@ -8,6 +8,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import ApptCalendar from "./ApptCalendar";
 import RequestData from "./RequestData";
+import VisitationPlot from "./VisitationPlot";
 import {auth, firebase} from './firebase';
 import "./headerstyle.css";
 import { BrowserRouter as Router} from 'react-router-dom';
@@ -46,6 +47,7 @@ const MainNonAuth = () => (
       <Route path="/signup" component={SignUp} />
       <Route path="/apptcalendar" component={ApptCalendar}/>
       <Route path="/requestdata" component={RequestData} />
+      <Route path="/plots" component={VisitationPlot} /> 
     </Switch>
   </main>
 );
@@ -82,6 +84,9 @@ const HeaderNonAuth = () => (
         </li>
         <li>
           <Link to="/requestdata">Request Data</Link>
+        </li>
+        <li>
+          <Link to="/plots">Plot Data from Visitations</Link>
         </li>
       </ul>
     </nav>
