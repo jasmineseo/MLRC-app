@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import * as d3 from "d3";
-import "save-svg-as-png"
+import * as saveSvg from "save-svg-as-png";
 
 //d3 from https://github.com/d3/d3
 // load with "npm install d3"
@@ -29,7 +29,8 @@ var sumCategories = ["allVisits"]
 const VisitationPlotsPage = () =>
     (<div>
         <h1>Visitation Plots</h1>
-        <button id='saveButton'> "Download Charts as PNGs" </button>
+        <button id='saveCumulative'> Download Cumulative Plot as PNG </button>
+        <button id='saveWeekly'> Download Weekly Plot as PNGs </button>
         <VisitationPlots />
     </div>);
 
@@ -39,17 +40,18 @@ class VisitationPlots extends React.Component {
         super(props);
 
         this.state = {
-            category: "",
+            category: "language",
             startDate: new Date(),
             endDate: new Date(),
             data: testData,
         }
+        this.downloadCumulative = this.downloadSVG.bind(this, null, 0);
+        this.downloadWeekly = this.downloadSVG.bind(this, null, 1);
     };
 
     componentDidMount(){
         var dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
         // make the cumulative data plot
-        this.state.startDate.toUTCString();
         this.makeStackedPlot(sumData, 
                             sumCategories, 
                             false, 
@@ -57,14 +59,21 @@ class VisitationPlots extends React.Component {
                                 this.state.startDate.toLocaleDateString("en-US", dateOptions) + 
                                 " to " + 
                                 this.state.endDate.toLocaleDateString("en-US", dateOptions));
+
+                                
         // make the week by week plot
-        this.makeStackedPlot(testData, testCategories, true, "Visits by Week");
+        this.makeStackedPlot(testData, 
+                            testCategories, 
+                            true, 
+                            "Visits by Week from " + 
+                            this.state.startDate.toLocaleDateString("en-US", dateOptions) + 
+                            " to " + 
+                            this.state.endDate.toLocaleDateString("en-US", dateOptions));
     }
 
     componentWillUnmount(){
         d3.select("svg").remove();
     }
-
 
     formatStackedData(data, categories){
         var dataStackLayout = d3.stack().keys(categories)
@@ -72,6 +81,21 @@ class VisitationPlots extends React.Component {
         (data)
         
         return dataStackLayout
+    }
+
+    downloadSVG(event, idx){
+        //if idx is 0, download cumulative. if idx is 1, download weekly
+        var dateFormat = { year: 'numeric', month: 'short', day: 'numeric' };
+        var name = "by_" + this.state.category + "_" + 
+            this.state.startDate.toLocaleDateString("en-US", dateFormat) + "_to_" +
+            this.state.endDate.toLocaleDateString("en-US", dateFormat) + ".png";
+        if (idx === 0){
+            name = "cumulative_" + name;
+        }
+        else{
+            name = "weekly_" + name; 
+        }
+        saveSvg.saveSvgAsPng(document.getElementsByTagName("svg")[idx], name, {scale: 1, backgroundColor: "#FFFFFF"});
     }
 
 
@@ -183,7 +207,15 @@ class VisitationPlots extends React.Component {
             //add legend to the chart
             svg.append("g")
                 .attr("transform", `translate(${width - margin.right},${margin.top})`)
-                .call(legend);            
+                .call(legend);   
+                
+
+            d3.select("#saveCumulative")
+                .on('click', this.downloadCumulative)
+
+            d3.select("#saveWeekly")
+                .on('click', this.downloadWeekly)
+
         }
 
         console.log("end")
