@@ -1,26 +1,35 @@
 import React from "react";
 import "./styles.css";
 import * as d3 from "d3";
+import "save-svg-as-png"
 
 //d3 from https://github.com/d3/d3
 // load with "npm install d3"
 
 //formatting from http://www.adeveloperdiary.com/d3-js/create-stacked-bar-chart-using-d3-js/
-var margin = {top: 20, right: 150, bottom: 30, left: 50};
-var width = 500 - margin.left - margin.right;
-var height = 300 - margin.top - margin.bottom;
+var margin = {top: 100, right: 150, bottom: 30, left: 50};
+var width = 800 - margin.left - margin.right;
+var height = 600 - margin.top - margin.bottom;
 
-var testData = [{week: "week1", Spanish: 4, Korean: 9, Arabic: 5, French: 0},  
-                {week: "week2", Spanish: 9, Korean: 0, Arabic: 3, French: 1},
-                {week: "week3", Spanish: 6, Korean: 6, Arabic: 8, French: 4}];
+var testData = [{xlab: "week1", Spanish: 4, Korean: 9, Arabic: 5, French: 0},  
+                {xlab: "week2", Spanish: 9, Korean: 0, Arabic: 3, French: 1},
+                {xlab: "week3", Spanish: 6, Korean: 6, Arabic: 8, French: 4}];
 
+
+var sumData = [{xlab: "Spanish", allVisits: 19},
+               {xlab: "Korean", allVisits: 15}, 
+               {xlab: "Arabic", allVisits: 16},
+               {xlab: "French", allVisits: 5}];
 
 var testCategories = ["Spanish", "Korean", "Arabic", "French"];
+
+var sumCategories = ["allVisits"]
 
 
 const VisitationPlotsPage = () =>
     (<div>
         <h1>Visitation Plots</h1>
+        <button id='saveButton'> "Download Charts as PNGs" </button>
         <VisitationPlots />
     </div>);
 
@@ -38,21 +47,39 @@ class VisitationPlots extends React.Component {
     };
 
     componentDidMount(){
-        this.makeStackedPlot();
+        var dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        // make the cumulative data plot
+        this.state.startDate.toUTCString();
+        this.makeStackedPlot(sumData, 
+                            sumCategories, 
+                            false, 
+                            "All Visits from " + 
+                                this.state.startDate.toLocaleDateString("en-US", dateOptions) + 
+                                " to " + 
+                                this.state.endDate.toLocaleDateString("en-US", dateOptions));
+        // make the week by week plot
+        this.makeStackedPlot(testData, testCategories, true, "Visits by Week");
     }
 
     componentWillUnmount(){
         d3.select("svg").remove();
     }
 
-    makeStackedPlot(){
+
+    formatStackedData(data, categories){
+        var dataStackLayout = d3.stack().keys(categories)
+        .offset(d3.stackOffsetDiverging)
+        (data)
+        
+        return dataStackLayout
+    }
+
+
+    makeStackedPlot(data, categories, useLegend, title){
         console.log("start");
         //reformat data
-        var dataStackLayout = d3.stack().keys(testCategories)
-                                        .offset(d3.stackOffsetDiverging)
-                                        (testData)
+        var dataStackLayout = this.formatStackedData(data, categories)
 
-    
 
         //set up x and y ranges
         var xRange = d3.scaleBand()
@@ -60,7 +87,7 @@ class VisitationPlots extends React.Component {
                   .padding(0.35);
                   
         xRange.domain(dataStackLayout[0].map(function (d) {
-            return d.data.week;
+            return d.data.xlab;
         }));
  
         var yRange = d3.scaleLinear()
@@ -100,7 +127,7 @@ class VisitationPlots extends React.Component {
             .data(d => d)
             .enter().append("rect")
                 .attr("x", function (d) {                
-                    return xRange(d.data.week);
+                    return xRange(d.data.xlab);
                 })
                 .attr("y", function (d) {
                     return yRange(d[1]);
@@ -110,30 +137,6 @@ class VisitationPlots extends React.Component {
                 })
                 .attr("width", xRange.bandwidth());
                 
-        //create a legend
-        var legend = svg => {
-            const g = svg
-                .attr("font-family", "sans-serif")
-                .attr("font-size", 10)
-                .attr("text-anchor", "end")
-                .selectAll("g")
-                .data(testCategories.slice().reverse())
-                .enter()
-                .append("g")
-                .attr("transform", (d, i) => `translate(0,${i * 20})`);
-          
-            g.append("rect")
-                .attr("x", 200)
-                .attr("width", 19)
-                .attr("height", 19)
-                .attr("fill", (d, i) => color(testCategories.length - i - 1));
-          
-            g.append("text")
-                .attr("x", 190)
-                .attr("y", 9.5)
-                .attr("dy", "0.35em")
-                .text(d => d);
-        }
 
         // add axes to the chart
         svg.append("g")
@@ -144,10 +147,45 @@ class VisitationPlots extends React.Component {
         svg.append("g")
             .call(yAxis)
 
-        //add legend to the chart
-        svg.append("g")
-            .attr("transform", `translate(${width - margin.right},${margin.top})`)
-            .call(legend);
+        // add title to the chart
+        svg.append("text")
+            .attr("x", (width / 2))             
+            .attr("y", 0 - (margin.top / 4))
+            .attr("text-anchor", "middle")  
+            .style("font-size", "24px") 
+            .text(title);
+
+        if(useLegend){
+            //create a legend
+            var legend = svg => {
+                const g = svg
+                    .attr("font-family", "sans-serif")
+                    .attr("font-size", 10)
+                    .attr("text-anchor", "end")
+                    .selectAll("g")
+                    .data(categories.slice().reverse())
+                    .enter()
+                    .append("g")
+                    .attr("transform", (d, i) => `translate(0,${i * 20})`);
+            
+                g.append("rect")
+                    .attr("x", 200)
+                    .attr("width", 19)
+                    .attr("height", 19)
+                    .attr("fill", (d, i) => color(categories.length - i - 1));
+            
+                g.append("text")
+                    .attr("x", 190)
+                    .attr("y", 9.5)
+                    .attr("dy", "0.35em")
+                    .text(d => d);
+            }
+            //add legend to the chart
+            svg.append("g")
+                .attr("transform", `translate(${width - margin.right},${margin.top})`)
+                .call(legend);            
+        }
+
         console.log("end")
         return svg.node;
     }
