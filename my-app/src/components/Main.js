@@ -6,7 +6,6 @@ import CheckIn from "./checkin";
 import Feedback from "./feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import ApptCalendar from "./ApptCalendar";
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
