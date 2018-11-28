@@ -4,13 +4,14 @@ import "./styles.css";
 import * as routes from '../constants/routes';
 import { Link, withRouter, } from 'react-router-dom';
 import {Arabic, French, } from './CalendlyLinks';
+import {auth, firebase} from './firebase';
+
 
 const ApptCalendar = ({language}) => {
-    if (language == "Arabic") {
-        return(<Arabic/>)
-    } else if (language == "French") {
-        return(<French/>)
-    }
+    return firebase.database().ref('/language/' + language).once('value').then(function(snapshot) {
+    var calendly = (snapshot.val() && snapshot.val().calendly) || 'Unknown';
+    alert("calendly is " + calendly)
+});
 
 }
 
