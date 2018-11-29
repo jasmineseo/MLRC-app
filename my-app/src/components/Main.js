@@ -21,6 +21,7 @@ const Main = () => (
       <Route path="/feedback" component={Feedback} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
+      <Route path="/apptcalendar" component={ApptCalendar}/>
     </Switch>
   </main>
 );
