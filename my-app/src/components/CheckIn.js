@@ -2,6 +2,22 @@ import React from "react";
 // import ReactDOM from "react-dom";
 import {auth, firebase} from './firebase';
 import "./styles.css";
+//import {sendEmailConfirmation} from "../../functions/index";
+
+/*const functions = require('firebase-functions');
+const nodemailer = require('nodemailer');
+
+const gmailEmail = functions.config().gmail.email;
+const gmailPassword = functions.config().gmail.password;
+const mailTransport = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: gmailEmail,
+    pass: gmailPassword,
+  }
+});
+*/
+
 
 const CheckInPage = () =>
   <div>
@@ -25,7 +41,33 @@ class CheckIn extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+/*
+  async sendEmail(email) { 
+    const mailOptions = {
+      from: '"Modern Language Resource Center" <mlrc@scrippscollege.edu>',
+      to: email, //val.email
+    };
+  
+    //const subscribed = val.subscribedToMailingList;
+  
+    // Building Email message.
+    mailOptions.subject = 'Thanks for visiting the MLRC!';
+    mailOptions.text = 
+        '<p>Thanks for visiting the Modern Language Resource Center!</p>\
+        <p>If you have a chance, please give us your feedback \
+        <a href="https://mlrc-5a590.firebaseapp.com">here</a>. Your feedback \
+        helps us make the MLRC better!';
+  
+    try {
+      await mailTransport.sendMail(mailOptions);
+      return console.log("email sent to", email);
+    }
+    catch (error) {
+      return console.error('There was an error while sending the email:', error);
+    }
+    return null;
+  } 
+*/
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -51,8 +93,16 @@ class CheckIn extends React.Component {
       service: this.state.service,
       school: this.state.school
     });
+    firebase.database().ref("checkinemails/" + this.state.name).set({
+      email: this.state.email,
+    });
+    /*firebase.database().ref("checkinemails/").set( {
+      email: this.state.email,
+    });*/
+    //this.sendEmail(this.state.email);
     document.getElementById("checkInForm").reset();
     event.preventDefault();
+
   }
 
   render() {
