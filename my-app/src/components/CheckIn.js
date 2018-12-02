@@ -51,12 +51,13 @@ class CheckIn extends React.Component {
       service: this.state.service,
       school: this.state.school
     });
+    document.getElementById("checkInForm").reset();
     event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="checkInForm" onSubmit={this.handleSubmit}>
         <header>
           <h2> Check in to the MLRC </h2>
         </header>

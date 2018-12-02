@@ -5,6 +5,7 @@ import * as routes from '../constants/routes';
 
 const SignUpPage = ({ history }) =>
   <div>
+    <h1>Sign Up</h1>
     <SignUpForm history={history} />
   </div>
     

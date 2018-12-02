@@ -29,18 +29,20 @@ class Feedback extends React.Component {
   }
 
   handleSubmit(event) {
-    firebase.database().ref("feedback/" + this.state.date+"/"+this.state.language).set({
+    firebase.database().ref("feedback/" + this.state.date).set({
+      language: this.state.language,
       question1: this.state.question1,
       question2: this.state.question2,
       question3: this.state.question3,
     });
     event.preventDefault();
     console.log(this.state);
+    document.getElementById("feedbackForm").reset();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="feedbackForm" onSubmit={this.handleSubmit}>
         <header>
           <h2> Send us feedback! </h2>
         </header>
