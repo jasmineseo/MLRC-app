@@ -1,23 +1,24 @@
-  .App {
+
+.App {
     text-align: center;
   }
 
 * {
-  font-family: Helvetica,  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Roboto, Helvetica,  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
   
 
 ul{
   list-style:none;
   display: inline-block;
-  background-color:#4caf50;
+  background-color:#34715b;
   border-radius: 4px;
 }
 
 ul li{
   display: inline-block;
   cursor:pointer;
-  background-color:#4caf50; 
+  background-color:#34715b; 
   text-decoration: none;
   color:white;
   transition:0.3s;
@@ -59,6 +60,7 @@ ul li.active a {
     border: 3px solid #555;
   }
   
+/*
 input[type="text"], select {
   width: 100%;
   padding: 12px 20px;
@@ -69,10 +71,11 @@ input[type="text"], select {
   border-radius: 4px;
   background-color: #ffffff;
   }
+*/
   
   input[type="submit"] {
   width: 50%;
-  background-color: #4caf50;
+  background-color: #34715b;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -99,12 +102,13 @@ input[type="text"] {
 }
 */
 
+/*
 input[type="password"] {
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-}
+}*/
 
 textarea {
   width: 50%;

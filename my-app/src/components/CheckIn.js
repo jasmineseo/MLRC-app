@@ -1,7 +1,7 @@
 import React from "react";
 // import ReactDOM from "react-dom";
 import {auth, firebase} from './firebase';
-//import "./styles.css";
+import "./styles.css";
 
 const CheckInPage = () =>
   <div>

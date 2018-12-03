@@ -2,6 +2,27 @@ import React from "react";
 // import ReactDOM from "react-dom";
 // import "./styles.css";
 import {auth,firebase} from './firebase';
+import Select from '@material-ui/core/Select';
+import { withStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
 
 const FeedbackPage = () =>
   <div>
@@ -46,26 +67,25 @@ class Feedback extends React.Component {
         <header>
           <h2> Send us feedback! </h2>
         </header>
-        <label>
+        <FormControl>
+        <InputLabel>
           Which language did you visit for?
-          <br />
-          <select
+          </InputLabel>
+          <Select
             value={this.state.value}
             name="language"
-            type="select"
-            placeholder={"Select a language"}
+            /*placeholder={"Select a language"}*/
             onChange={this.handleChange}
           >
-            <option value="Select a language">Select a language</option>
-            <option value="Arabic">Arabic</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Italian">Italian</option>
-            <option value="Korean">Korean</option>
-            <option value="Spanish">Spanish</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
+            <MenuItem value="Arabic">Arabic</MenuItem>
+            <MenuItem value="French">French</MenuItem>
+            <MenuItem value="German">German</MenuItem>
+            <MenuItem value="Italian">Italian</MenuItem>
+            <MenuItem value="Korean">Korean</MenuItem>
+            <MenuItem value="Spanish">Spanish</MenuItem>
+            <MenuItem value="Other">Other</MenuItem>
+          </Select>
+          </FormControl>
         <br />
         <br />
         <label>
@@ -125,7 +145,7 @@ class Feedback extends React.Component {
   }
 }
 
-export default FeedbackPage;
+export default withStyles(styles)(FeedbackPage);
 
 export { 
   Feedback,
