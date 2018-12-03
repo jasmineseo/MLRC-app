@@ -5,6 +5,8 @@ import * as saveSvg from "save-svg-as-png";
 
 //d3 from https://github.com/d3/d3
 // load with "npm install d3"
+//and svg saving from https://github.com/exupero/saveSvgAsPng
+//load with "npm install save-svg-as-png"
 
 //formatting from http://www.adeveloperdiary.com/d3-js/create-stacked-bar-chart-using-d3-js/
 var margin = {top: 100, right: 150, bottom: 30, left: 50};
@@ -26,12 +28,12 @@ var testCategories = ["Spanish", "Korean", "Arabic", "French"];
 var sumCategories = ["allVisits"]
 
 
-const VisitationPlotsPage = () =>
+const VisitationPlotsPage = (inputState) =>
     (<div>
         <h1>Visitation Plots</h1>
         <button id='saveCumulative'> Download Cumulative Plot as PNG </button>
-        <button id='saveWeekly'> Download Weekly Plot as PNGs </button>
-        <VisitationPlots />
+        <button id='saveWeekly'> Download Weekly Plot as PNG </button>
+        <VisitationPlots input={inputState} />
     </div>);
 
 class VisitationPlots extends React.Component {
@@ -40,9 +42,9 @@ class VisitationPlots extends React.Component {
         super(props);
 
         this.state = {
-            category: "language",
-            startDate: new Date(),
-            endDate: new Date(),
+            category: props.input.inputState.category,
+            startDate: props.input.inputState.dateRange.selection.startDate,
+            endDate: props.input.inputState.dateRange.selection.endDate,
             data: testData,
         }
         this.downloadCumulative = this.downloadSVG.bind(this, null, 0);
@@ -100,10 +102,8 @@ class VisitationPlots extends React.Component {
 
 
     makeStackedPlot(data, categories, useLegend, title){
-        console.log("start");
         //reformat data
         var dataStackLayout = this.formatStackedData(data, categories)
-
 
         //set up x and y ranges
         var xRange = d3.scaleBand()
@@ -150,16 +150,36 @@ class VisitationPlots extends React.Component {
         layer.selectAll("rect")
             .data(d => d)
             .enter().append("rect")
-                .attr("x", function (d) {                
-                    return xRange(d.data.xlab);
+                .attr("x", d => xRange(d.data.xlab))
+                .attr("y", d => yRange(d[1]))
+                .attr("height", d => yRange(d[0]) - yRange(d[1]))
+                .attr("width", xRange.bandwidth())
+            
+        layer.selectAll("text")
+            .data(d => d)
+            .enter().append("text")
+                .text(function(d){
+                    if(d[1] - d[0] > 0){
+                        return d[1] - d[0];
+                    }
+                    else{return null}
                 })
-                .attr("y", function (d) {
-                    return yRange(d[1]);
-                })
-                .attr("height", function (d) {
-                    return yRange(d[0]) - yRange(d[1]);
-                })
-                .attr("width", xRange.bandwidth());
+                .attr("fill", "white")
+                .attr("y", d => yRange(d[1]) + 18)
+                .attr("x", d => xRange(d.data.xlab) + xRange.bandwidth() / 2)
+                .style("text-anchor", "middle")
+
+
+                // .attr("fill", "white")
+                // .attr("text-anchor", "end")
+                // .style("font", "12px sans-serif")
+                // .selectAll("text")
+                // .data(data)
+                // .enter().append("text")
+                // .attr("y", d => yRange(d[0]) - 2)
+                // .attr("x", d => xRange(d.value) - 4)
+                //     .attr("dx", "0.35em")
+                //     .text(d => yRange(d[0]) - yRange(d[1]));
                 
 
         // add axes to the chart
@@ -218,7 +238,6 @@ class VisitationPlots extends React.Component {
 
         }
 
-        console.log("end")
         return svg.node;
     }
 
