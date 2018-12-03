@@ -9,7 +9,7 @@ import SignUp from "./SignUp";
 import RequestData from "./RequestData";
 import VisitationPlot from "./VisitationPlot";
 import LangTutor from "./LangTutor";
-// import DisplayFeedback from "./DisplayFeedback";
+import DisplayFeedback from "./DisplayFeedback";
 import {auth, firebase} from './firebase';
 import "./headerstyle.css";
 import { BrowserRouter as Router} from 'react-router-dom';
@@ -32,7 +32,7 @@ const Main = () => (
       <Route path="/feedback" component={Feedback} />
       <Route path="/signup" component={SignUp} />
       <Route path="/langtutor" component={LangTutor} />
-      {/* <Route path="/displayfeedback" component={DisplayFeedback} /> */}
+      <Route path="/displayfeedback" component={DisplayFeedback} />
       <Route path="/requestdata" component={RequestData} />
     </Switch>
   </main>
@@ -48,7 +48,7 @@ const MainNonAuth = () => (
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
       <Route path="/langtutor" component={LangTutor} />
-      {/* <Route path="/displayfeedback" component={DisplayFeedback} /> */}
+      <Route path="/displayfeedback" component={DisplayFeedback} />
       <Route path="/requestdata" component={RequestData} />
       <Route path="/plots" component={VisitationPlot} /> 
     </Switch>
@@ -91,9 +91,9 @@ const HeaderNonAuth = () => (
         <li>
           <Link to="/requestdata">Request Data</Link>
         </li>
-        {/* <li>
+        <li>
           <Link to="/displayfeedback">Student Feedback</Link>
-        </li> */}
+        </li>
         <li>
           <Link to="/plots">Plot Data from Visitations</Link>
         </li>
@@ -124,9 +124,9 @@ const Header = () => (
         <li>
           <Link to="/langtutor">Add Tutor</Link>
         </li>
-        {/* <li>
+        <li>
           <Link to="/displayfeedback">Student Feedback</Link>
-        </li> */}
+        </li>
         <li>
           <Link to="/requestdata">Request Data</Link>
         </li>

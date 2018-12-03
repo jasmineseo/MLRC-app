@@ -39,8 +39,7 @@ class LangTutor extends React.Component {
       this.state.tutorTime
     );
 
-    firebase.database().ref("tutor/" + this.state.name).set({
-      language: this.state.language,
+    firebase.database().ref("language/" + this.state.language + "/" + this.state.name).set({
       email: this.state.email,
       tutorTime: this.state.tutorTime,
     });
@@ -120,7 +119,6 @@ class LangTutor extends React.Component {
 
 export default LangTutor;
 
-// ReactDOM.render(<CheckIn />, document.getElementById("root"));
 
 export {
   LangTutor,
