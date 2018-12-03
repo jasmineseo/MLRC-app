@@ -89,10 +89,10 @@ const HeaderNonAuth = () => (
           <Link to="/langtutor">Add Tutor</Link>
         </li>
         <li>
-          <Link to="/requestdata">Request Data</Link>
+          <Link to="/displayfeedback">Student Feedback</Link>
         </li>
         <li>
-          <Link to="/displayfeedback">Student Feedback</Link>
+          <Link to="/requestdata">Request Data</Link>
         </li>
         <li>
           <Link to="/plots">Plot Data from Visitations</Link>
