@@ -1,6 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import {auth, firebase} from './firebase';
+import {firebase} from './firebase';
 import "./styles.css";
 
 
@@ -15,10 +14,10 @@ class LangTutor extends React.Component {
     super(props);
 
     this.state = {
-      name:"",
-      language:"",
-      email:"",
-      tutorTime: ""
+      name: "",
+      language: "",
+      email: "",
+      tutorTime: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -39,7 +38,9 @@ class LangTutor extends React.Component {
       "Tutoring sessions: " +
       this.state.tutorTime
     );
-    firebase.database().ref(this.state.language + "/" + this.state.name).set({
+
+    firebase.database().ref("tutor/" + this.state.name).set({
+      language: this.state.language,
       email: this.state.email,
       tutorTime: this.state.tutorTime,
     });
@@ -48,7 +49,7 @@ class LangTutor extends React.Component {
 
   render() {
     return (
-      <form onSubmit=(this.handleSubmit)>
+      <form onSubmit={this.handleSubmit}>
         <header>
           <h2> Add a new MLRC tutor. </h2>
         </header>
@@ -102,7 +103,7 @@ class LangTutor extends React.Component {
           Tutoring time: 
           <input
             type = "text"
-            name = "email"
+            name = "tutorTime"
             value = {this.state.value}
             placeholder = {"Enter tutor time (i.e. Wednesday 6-8pm)"}
             onChange = {this.handleChange}
@@ -122,5 +123,5 @@ export default LangTutor;
 // ReactDOM.render(<CheckIn />, document.getElementById("root"));
 
 export {
-  LangTutor;
+  LangTutor,
 };
