@@ -6,6 +6,7 @@ import CheckIn from "./CheckIn";
 import Feedback from "./Feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import SignOut from "./SignOut";
 import RequestData from "./RequestData";
 import VisitationPlot from "./VisitationPlot";
 import {auth, firebase} from './firebase';
@@ -111,6 +112,9 @@ const Header = () => (
         </li>
         <li>
           <Link to="/requestdata">Request Data</Link>
+        </li>
+        <li>
+          <SignOut />
         </li>
       </ul>
     </nav>

@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/auth';
 
 var config = {
@@ -13,6 +13,7 @@ var config = {
   
 const auth = firebase.auth();
 
+/*
 // Sign Up
 export const doCreateUserWithEmailAndPassword = (email, password) =>
   auth.createUserWithEmailAndPassword(email, password);
@@ -24,7 +25,7 @@ export const doSignInWithEmailAndPassword = (email, password) =>
 // Sign out
 export const doSignOut = () =>
   auth.signOut();
-
+*/
 export {
     auth,
     firebase,

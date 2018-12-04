@@ -38,13 +38,14 @@ class SignUpForm extends Component {
         const {
             history,
         } = this.props;
-
-        auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+        alert(email);
+        auth.createUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
                 history.push(routes.HOME);
             })
             .catch(error => {
+                alert(error);
                 this.setState(byPropKey('error', error));
             });
         event.preventDefault();

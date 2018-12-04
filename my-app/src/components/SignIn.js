@@ -39,7 +39,7 @@ class SignInForm extends Component {
       history,
     } = this.props;
 
-    auth.doSignInWithEmailAndPassword(email, password)
+    auth.signInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         history.push(routes.HOME);
@@ -77,11 +77,12 @@ class SignInForm extends Component {
         <TextField
           value={password}
           onChange={event => this.setState(byPropKey('password', event.target.value))}
-          id="password"
+          //id="password"
+          type="password"
           placeholder="Password"
         />
         <br />
-        <Button disabled={isInvalid} onClick={this.handleClick}>
+        <Button disabled={isInvalid} onClick={this.onSubmit}>
           Sign In
         </Button>
 
