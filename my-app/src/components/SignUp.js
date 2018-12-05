@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/Input';
 
 const SignUpPage = ({ history }) =>
   <div>
-    <h1>Sign Up</h1>
     <SignUpForm history={history} />
   </div>
     
@@ -73,7 +72,7 @@ class SignUpForm extends Component {
       <form onSubmit={this.onSubmit}>
       <header>
         <h2>
-          Sign Up
+          Add New Admin
         </h2>
       </header>
         <TextField
