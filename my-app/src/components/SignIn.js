@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { SignUpLink } from './SignUp';
+// import { SignUpLink } from './SignUp';
 import {auth, firebase} from './firebase';
 import * as routes from '../constants/routes';
 import Button from '@material-ui/core/Button';
@@ -9,7 +9,7 @@ import TextField from '@material-ui/core/Input';
 const SignInPage = ({ history }) =>
   <div>
     <SignInForm history={history} />
-    <SignUpLink />
+    {/* <SignUpLink /> */}
   </div>
 
 const byPropKey = (propertyName, value) => () => ({
