@@ -115,16 +115,16 @@ class SignUpForm extends Component {
   }
 }
 
-const SignUpLink = () =>
-  <p>
-    Don't have an account?
-    {' '}
-    <Link to={routes.SIGN_UP}>Sign Up</Link>
-  </p>
+// const SignUpLink = () =>
+//   <p>
+//     Don't have an account?
+//     {' '}
+//     <Link to={routes.SIGN_UP}>Sign Up</Link>
+//   </p>
 
 export default SignUpPage;
 
 export {
   SignUpForm,
-  SignUpLink,
+  // SignUpLink,
 };
