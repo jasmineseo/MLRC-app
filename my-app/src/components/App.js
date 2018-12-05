@@ -95,9 +95,6 @@ const HeaderNonAuth = () => (
         <li>
           <Link to="/requestdata">Request Data</Link>
         </li>
-        <li>
-          <Link to="/plots">Plot Data from Visitations</Link>
-        </li>
       </ul>
     </nav>
   </header>

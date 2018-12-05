@@ -12,10 +12,22 @@ input[type="text"]:focus {
   border: 3px solid #555;
 }
 
-Button[type="button"] { 
+ul li {
+  display: inline-block;
+  cursor: pointer;
+  background-color: #34715b;
+  text-decoration: none;
+  color: white;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  font: 14px;
+}
+
+Button[type="header"] { 
   color: white;
 }
 
+/*
 input[type="text"],
 select {
   width: 100%;
@@ -26,7 +38,7 @@ select {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #ffffff;
-}
+}*/
 
 input[type="password"]:focus {
   border: 3px solid #555;

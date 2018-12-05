@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 const SignOutButton = () =>
   <Button
-    type="button"
+    type="header"
     onClick={() => auth.signOut()}
   >
     Sign Out
