@@ -45,7 +45,9 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
-    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.name).set({
+    var now = new Date("Nov 4th");
+    now.setHours(0,0,0,0);
+    firebase.database().ref("checkin/" + now.getTime() + "/" + this.state.name).set({
       language: this.state.language,
       year: this.state.year,
       service: this.state.service,

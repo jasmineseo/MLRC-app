@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.css";
 import * as d3 from "d3";
 import * as saveSvg from "save-svg-as-png";
+import {auth, firebase} from './firebase';
 
 //d3 from https://github.com/d3/d3
 // load with "npm install d3"
@@ -52,6 +53,7 @@ class VisitationPlots extends React.Component {
     };
 
     componentDidMount(){
+        this.getData();
         var dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
         // make the cumulative data plot
         this.makeStackedPlot(sumData, 
@@ -98,6 +100,18 @@ class VisitationPlots extends React.Component {
             name = "weekly_" + name; 
         }
         saveSvg.saveSvgAsPng(document.getElementsByTagName("svg")[idx], name, {scale: 1, backgroundColor: "#FFFFFF"});
+    }
+    getData(){
+        let dateObj = firebase.database().ref().child('checkin');
+        let dateObjs = firebase.database().ref().child('checkin').orderByValue()
+        dateObjs.startAt(this.state.startDate.getTime()).endAt(this.state.endDate.getTime());
+        alert("Here");
+        console.log("here" + dateObjs);
+        // var languages = [];
+        // var users = dateObj.orderByChild('language').equalTo('French');
+        // users.on('value', function(snapshot) {
+        //   alert("there are " + snapshot.numChildren() + " users for that language");
+        // })
     }
 
 

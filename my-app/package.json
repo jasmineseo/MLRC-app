@@ -3,14 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@angular/fire": "^5.1.0",
     "ajv": "^6.5.5",
-    "firebase": "^5.5.7",
+    "d3": "^5.7.0",
+    "firebase": "^5.5.9",
     "react": "^16.5.2",
     "react-date-range": "^1.0.0-beta",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
     "react-router-tabs": "^1.2.0",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "react-table": "^6.8.6",
+    "save-svg-as-png": "^1.4.6"
   },
   "scripts": {
     "start": "react-scripts start",

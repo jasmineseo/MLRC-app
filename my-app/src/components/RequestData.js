@@ -15,6 +15,9 @@ const RequestDataPage = () =>
     <RequestData />
   </div>
 
+const french = 0
+const korean = 0
+const german = 0
 
 class RequestData extends React.Component {
   constructor(props) {
