@@ -6,12 +6,13 @@ import CheckIn from "./CheckIn";
 import Feedback from "./Feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import SignOut from "./SignOut";
 import RequestData from "./RequestData";
 import VisitationPlot from "./VisitationPlot";
 import LangTutor from "./LangTutor";
 import DisplayFeedback from "./DisplayFeedback";
 import {auth, firebase} from './firebase';
-import "./headerstyle.css";
+import "./styles.css";
 import { BrowserRouter as Router} from 'react-router-dom';
 
 
@@ -74,7 +75,7 @@ const HeaderNonAuth = () => (
           <Link to="/appointment">Appointment</Link>
         </li>
         <li>
-          <Link to="/checkin">Check in</Link>
+          <Link to="/checkin">Check In</Link>
         </li>
         <li>
           <Link to="/feedback">Feedback</Link>
@@ -94,9 +95,6 @@ const HeaderNonAuth = () => (
         <li>
           <Link to="/requestdata">Request Data</Link>
         </li>
-        <li>
-          <Link to="/plots">Plot Data from Visitations</Link>
-        </li>
       </ul>
     </nav>
   </header>
@@ -113,7 +111,7 @@ const Header = () => (
           <Link to="/appointment">Appointment</Link>
         </li>
         <li>
-          <Link to="/checkin">Check in</Link>
+          <Link to="/checkin">Check In</Link>
         </li>
         <li>
           <Link to="/feedback">Feedback</Link>
@@ -129,6 +127,9 @@ const Header = () => (
         </li>
         <li>
           <Link to="/requestdata">Request Data</Link>
+        </li>
+        <li>
+          <SignOut />
         </li>
       </ul>
     </nav>

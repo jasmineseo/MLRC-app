@@ -1,5 +1,6 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 
 var config = {
     apiKey: "AIzaSyCcvypPOfoIdECYkbhJhVRc6T1gA7aOkbU",
@@ -13,6 +14,7 @@ var config = {
   
 const auth = firebase.auth();
 
+/*
 // Sign Up
 export const doCreateUserWithEmailAndPassword = (email, password) =>
   auth.createUserWithEmailAndPassword(email, password);
@@ -24,7 +26,7 @@ export const doSignInWithEmailAndPassword = (email, password) =>
 // Sign out
 export const doSignOut = () =>
   auth.signOut();
-
+*/
 export {
     auth,
     firebase,

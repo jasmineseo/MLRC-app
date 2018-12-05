@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./headerstyle.css";
+// import "./styles.css";
 // import { Route, Switch, Redirect } from 'react-router-dom';
 // import { RoutedTabs, NavTab } from 'react-router-tabs';
 // //import { Appointment, CheckIn, Feedback } from './components';
@@ -24,7 +24,7 @@ const Header = () => (
           <Link to="/appointment">Appointment</Link>
         </li>
         <li>
-          <Link to="/checkin">Check in</Link>
+          <Link to="/checkin">Check In</Link>
         </li>
         <li>
           <Link to="/feedback">Feedback</Link>
