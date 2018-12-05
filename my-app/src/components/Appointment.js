@@ -48,7 +48,7 @@ class Appointment extends React.Component {
   }
 
   render() {
-    if(this.state.mode == 'select') {
+    if(this.state.mode === 'select') {
       return (
         <form onSubmit={this.handleSubmit}>
           <header>
