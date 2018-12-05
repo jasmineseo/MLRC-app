@@ -89,9 +89,6 @@ const Header = () => (
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/signup">Sign Up</Link>
-        </li>
-        <li>
           <Link to="/langtutor">Add Tutor</Link>
         </li>
         <li>
@@ -99,6 +96,9 @@ const Header = () => (
         </li>
         <li>
           <Link to="/requestdata">Request Data</Link>
+        </li>
+        <li>
+          <Link to="/signup">Add New Admin</Link>
         </li>
         <li>
           <SignOut />
