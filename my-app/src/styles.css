@@ -12,6 +12,10 @@ input[type="text"]:focus {
   border: 3px solid #555;
 }
 
+Button[type="button"] { 
+  color: white;
+}
+
 input[type="text"],
 select {
   width: 100%;
@@ -22,6 +26,10 @@ select {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #ffffff;
+}
+
+input[type="password"]:focus {
+  border: 3px solid #555;
 }
 
 input[type="password"],

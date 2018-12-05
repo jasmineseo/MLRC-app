@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link, withRouter, } from 'react-router-dom';
 import {auth, firebase} from './firebase';
 import * as routes from '../constants/routes';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/Input';
+
 
 const SignUpPage = ({ history }) =>
   <div>
@@ -73,33 +76,38 @@ class SignUpForm extends Component {
           Sign Up
         </h2>
       </header>
-        <input
+        <TextField
           value={username}
           onChange={event => this.setState(byPropKey('username', event.target.value))}
           type="text"
           placeholder="Full Name"
         />
-        <input
+        <br />
+        <TextField
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        <br />
+        <TextField
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <input
+        <br />
+        <TextField
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <br />
+
+        <Button disabled={isInvalid} type="submit">
           Sign Up
-        </button>
+        </Button>
 
         { error && <p>{error.message}</p> }
       </form>

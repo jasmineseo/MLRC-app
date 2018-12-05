@@ -77,7 +77,7 @@ class SignInForm extends Component {
         <TextField
           value={password}
           onChange={event => this.setState(byPropKey('password', event.target.value))}
-          //id="password"
+          id="password"
           type="password"
           placeholder="Password"
         />
