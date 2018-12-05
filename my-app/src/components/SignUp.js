@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Link, withRouter, } from 'react-router-dom';
 import {auth, firebase} from './firebase';
 import * as routes from '../constants/routes';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/Input';
+
 
 const SignUpPage = ({ history }) =>
   <div>
@@ -38,13 +41,14 @@ class SignUpForm extends Component {
         const {
             history,
         } = this.props;
-
-        auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+        alert(email);
+        auth.createUserWithEmailAndPassword(email, passwordOne)
             .then(authUser => {
                 this.setState({ ...INITIAL_STATE });
                 history.push(routes.HOME);
             })
             .catch(error => {
+                alert(error);
                 this.setState(byPropKey('error', error));
             });
         event.preventDefault();
@@ -67,33 +71,43 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
+      <header>
+        <h2>
+          Sign Up
+        </h2>
+      </header>
+        <TextField
           value={username}
           onChange={event => this.setState(byPropKey('username', event.target.value))}
           type="text"
           placeholder="Full Name"
         />
-        <input
+        <br />
+        <TextField
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        <br />
+        <TextField
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <input
+        <br />
+        <TextField
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <br />
+
+        <Button disabled={isInvalid} type="submit">
           Sign Up
-        </button>
+        </Button>
 
         { error && <p>{error.message}</p> }
       </form>

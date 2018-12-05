@@ -3,6 +3,11 @@ import {firebase} from './firebase';
 import "./styles.css";
 import {withRouter} from 'react-router-dom';
 
+const AppointmentPage = () =>
+  <div>
+    <Appointment />
+  </div>
+
 class Appointment extends React.Component {
   constructor(props) {
     super(props);
