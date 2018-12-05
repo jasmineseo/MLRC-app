@@ -18,8 +18,7 @@ class CheckIn extends React.Component {
       school: "",
       year: "",
       service: "",
-      language: "",
-      date:""
+      language: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,7 +44,7 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
-    var now = new Date("Nov 4th");
+    var now = new Date();
     now.setHours(0,0,0,0);
     firebase.database().ref("checkin/" + now.getTime() + "/" + this.state.name).set({
       language: this.state.language,
@@ -82,18 +81,6 @@ class CheckIn extends React.Component {
             name="email"
             value={this.state.value}
             placeholder={"youremail@mail.com"}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Date:
-          <input
-            type="text"
-            name="date"
-            value={this.state.value}
-            placeholder={"MM-DD-YYYY"}
             onChange={this.handleChange}
           />
         </label>

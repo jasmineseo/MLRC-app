@@ -107,11 +107,11 @@ class VisitationPlots extends React.Component {
         dateObjs.startAt(this.state.startDate.getTime()).endAt(this.state.endDate.getTime());
         alert("Here");
         console.log("here" + dateObjs);
-        // var languages = [];
-        // var users = dateObj.orderByChild('language').equalTo('French');
-        // users.on('value', function(snapshot) {
-        //   alert("there are " + snapshot.numChildren() + " users for that language");
-        // })
+        var languages = [];
+        var users = dateObj.orderByChild('language').equalTo('French');
+        users.on('value', function(snapshot) {
+          alert("there are " + snapshot.numChildren() + " users for that language");
+        })
     }
 
 
