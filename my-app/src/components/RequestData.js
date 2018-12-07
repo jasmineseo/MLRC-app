@@ -15,9 +15,6 @@ const RequestDataPage = () =>
     <RequestData />
   </div>
 
-const french = 0
-const korean = 0
-const german = 0
 
 class RequestData extends React.Component {
   constructor(props) {
@@ -85,7 +82,7 @@ class RequestData extends React.Component {
             >
               <option value="language">Language</option>
               <option value="school">School</option>
-              <option value="gradYear">Graduating Year</option>
+              <option value="year">Graduating Year</option>
               <option value="service">Service</option>
             </select>
           </label>

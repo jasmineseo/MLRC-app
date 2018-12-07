@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useImperativeMethods } from "react";
 import "./styles.css";
 import * as d3 from "d3";
 import * as saveSvg from "save-svg-as-png";
@@ -46,17 +46,22 @@ class VisitationPlots extends React.Component {
             category: props.input.inputState.category,
             startDate: props.input.inputState.dateRange.selection.startDate,
             endDate: props.input.inputState.dateRange.selection.endDate,
-            data: testData,
+            data: [],
+            sumData: sumData,
         }
+        this.state.startDate.setHours(0,0,0,0);
+        this.state.endDate.setHours(0,0,0,0);
         this.downloadCumulative = this.downloadSVG.bind(this, null, 0);
         this.downloadWeekly = this.downloadSVG.bind(this, null, 1);
     };
 
     componentDidMount(){
         this.getData();
+        console.log("Datadict is " + this.state.data);
+
         var dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
         // make the cumulative data plot
-        this.makeStackedPlot(sumData, 
+        this.makeStackedPlot(this.state.sumData, 
                             sumCategories, 
                             false, 
                             "All Visits from " + 
@@ -101,17 +106,50 @@ class VisitationPlots extends React.Component {
         }
         saveSvg.saveSvgAsPng(document.getElementsByTagName("svg")[idx], name, {scale: 1, backgroundColor: "#FFFFFF"});
     }
+
     getData(){
-        let dateObj = firebase.database().ref().child('checkin');
-        let dateObjs = firebase.database().ref().child('checkin').orderByValue()
-        dateObjs.startAt(this.state.startDate.getTime()).endAt(this.state.endDate.getTime());
-        alert("Here");
-        console.log("here" + dateObjs);
-        var languages = [];
-        var users = dateObj.orderByChild('language').equalTo('French');
-        users.on('value', function(snapshot) {
-          alert("there are " + snapshot.numChildren() + " users for that language");
-        })
+        const DataDict = this.state.data;
+        var category = this.state.category;
+
+        var start = this.state.startDate.getTime();
+        var end = this.state.endDate.getTime();
+        var dateObjs = firebase.database().ref().child('checkin').orderByKey();
+
+        //restructure data
+        dateObjs.startAt(start.toString()).endAt(end.toString()).on("value", function(x) {
+            console.log("x is " + x.key);
+            x.forEach(function(day) {
+
+                var date = new Date(day.key*1);
+                console.log("date is:" + date);
+                var month = date.toLocaleDateString("en-us", {month: "long"});
+                var year = date.toLocaleDateString("en-us", {year: "numeric"});
+                var dateKey = (month + "-" + year);
+                console.log(dateKey);
+                //add month to dictionary if not present
+                if (! (dateKey in DataDict)){
+                    DataDict[dateKey] = {};
+                }
+
+                day.forEach(function(visit) {
+                    var visitID = visit.key;
+                    console.log("visitId is" + visitID);
+                    var value = visit.val()[category]
+                    console.log("visit.val()[category] " + value);
+                    //add category value to month if not present 
+                    if (! (value in DataDict[dateKey])){
+                        DataDict[dateKey][value] = 0;
+                    }
+                    DataDict[dateKey][value] += 1;
+                    console.log("value is " + DataDict[dateKey][value]);
+                })
+            });
+
+        }).then(console.log("keys are " + Object.keys(DataDict)));
+        
+        // console.log("final value is " + DataDict["December-2018"]["French"])
+        this.state.data = DataDict;
+        // console.log("super final value is " + this.state.data["December-2018"]["French"])
     }
 
 
