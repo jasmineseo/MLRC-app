@@ -15,7 +15,7 @@ class Appointment extends React.Component {
     this.state = {
       language: "",
       mode: "select",
-      calendly: ""
+      calendar: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,9 +26,9 @@ class Appointment extends React.Component {
   findLink(language) {
     return firebase.database().ref('/language/' 
     + language).once('value').then(function(snapshot) {
-      var calendlyLink = (snapshot.val() && snapshot.val().calendly) 
+      var calendarLink = (snapshot.val() && snapshot.val().calendar) 
       || 'Unknown';
-      return calendlyLink;
+      return calendarLink;
     });
   }
 
@@ -40,10 +40,10 @@ class Appointment extends React.Component {
     event.preventDefault();
     this.setState({mode: 'calendar'});
     var lang = this.state.language;
-    var calendlyLink = Promise.resolve(this.findLink(lang));
+    var calendarLink = Promise.resolve(this.findLink(lang));
     let currentComponent = this;
-    calendlyLink.then(function(value) {
-      currentComponent.setState({calendly: value})
+    calendarLink.then(function(value) {
+      currentComponent.setState({calendar: value})
     });
   }
 
@@ -80,8 +80,8 @@ class Appointment extends React.Component {
       );
     }
     else{
-      var calendly = this.state.calendly;
-      var cString = calendly.toString();
+      var calendar = this.state.calendar;
+      var cString = calendar.toString();
       return (
         <div>                
           <iframe src={cString} 
