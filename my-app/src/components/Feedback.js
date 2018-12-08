@@ -67,25 +67,23 @@ class Feedback extends React.Component {
         <header>
           <h2> Send us feedback! </h2>
         </header>
-        <FormControl>
-        <InputLabel>
-          Which language did you visit for?
-          </InputLabel>
-          <Select
+        <label>
+          Which tutor did you visit?
+          <br />
+          <select
             value={this.state.value}
-            name="language"
-            /*placeholder={"Select a language"}*/
+            name="tutor"
+            type="select"
+            placeholder={"Select a tutor"}
             onChange={this.handleChange}
           >
-            <MenuItem value="Arabic">Arabic</MenuItem>
-            <MenuItem value="French">French</MenuItem>
-            <MenuItem value="German">German</MenuItem>
-            <MenuItem value="Italian">Italian</MenuItem>
-            <MenuItem value="Korean">Korean</MenuItem>
-            <MenuItem value="Spanish">Spanish</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
-          </Select>
-          </FormControl>
+            <option value="Select a tutor">Select a tutor</option>
+            <option value="Tutor 1">Tutor 1</option>
+            <option value="Tutor 2">Tutor 2</option>
+            <option value="Tutor 3">Tutor 3</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
         <br />
         <br />
         <label>
