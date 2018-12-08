@@ -47,6 +47,7 @@ class VisitationPlots extends React.Component {
             startDate: props.input.inputState.dateRange.selection.startDate,
             endDate: props.input.inputState.dateRange.selection.endDate,
             data: [],
+            dataDict: {},
             sumData: sumData,
         }
         this.state.startDate.setHours(0,0,0,0);
@@ -57,7 +58,7 @@ class VisitationPlots extends React.Component {
 
     componentDidMount(){
         this.getData();
-        console.log("Datadict is " + this.state.data);
+        console.log("dataDict is " + this.state.data);
 
         var dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
         // make the cumulative data plot
@@ -108,7 +109,7 @@ class VisitationPlots extends React.Component {
     }
 
     getData(){
-        const DataDict = this.state.data;
+        const dataDict = this.state.dataDict;
         var category = this.state.category;
 
         var start = this.state.startDate.getTime();
@@ -117,6 +118,7 @@ class VisitationPlots extends React.Component {
 
         //restructure data
         dateObjs.startAt(start.toString()).endAt(end.toString()).on("value", function(x) {
+            
             console.log("x is " + x.key);
             x.forEach(function(day) {
 
@@ -125,30 +127,50 @@ class VisitationPlots extends React.Component {
                 var month = date.toLocaleDateString("en-us", {month: "long"});
                 var year = date.toLocaleDateString("en-us", {year: "numeric"});
                 var dateKey = (month + "-" + year);
-                console.log(dateKey);
+
                 //add month to dictionary if not present
-                if (! (dateKey in DataDict)){
-                    DataDict[dateKey] = {};
+                if (! (dateKey in dataDict)){
+                    dataDict[dateKey] = {};
                 }
 
                 day.forEach(function(visit) {
                     var visitID = visit.key;
-                    console.log("visitId is" + visitID);
                     var value = visit.val()[category]
-                    console.log("visit.val()[category] " + value);
+
+                    console.log("visitId is" + visitID);
+
                     //add category value to month if not present 
-                    if (! (value in DataDict[dateKey])){
-                        DataDict[dateKey][value] = 0;
+                    if (! (value in dataDict[dateKey])){
+                        dataDict[dateKey][value] = 0;
                     }
-                    DataDict[dateKey][value] += 1;
-                    console.log("value is " + DataDict[dateKey][value]);
+
+                    dataDict[dateKey][value] += 1;
+
                 })
             });
 
-        }).then(console.log("keys are " + Object.keys(DataDict)));
+        })
+        console.log("DataDict is");
+        console.log(this.state.dataDict);
+
+        var tmp = [];
+
+        for (var key in dataDict){
+            console.log("reformatting " + key);
+            tmp.push(Object.assign({}, {xlab: key}, dataDict[key]));
+
+            // Object.keys(values).forEach(function(answer, count){
+            //     tmpMonth[answer] = count;
+            // })
+
+        };
+
         
-        // console.log("final value is " + DataDict["December-2018"]["French"])
-        this.state.data = DataDict;
+        console.log("tmp is");
+        console.log(tmp);
+        
+        // console.log("final value is " + dataDict["December-2018"]["French"])
+        // this.state.data = dataDict;
         // console.log("super final value is " + this.state.data["December-2018"]["French"])
     }
 
