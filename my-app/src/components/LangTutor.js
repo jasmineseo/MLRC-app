@@ -2,9 +2,6 @@ import React from "react";
 import {firebase} from './firebase';
 
 class LangTutor extends React.Component {
-// options for admin: add or delete a language/tutor
-// future terations:  adding languages/tutors (and their times) adds new options to the check in form
-// lang_tutor should using connected to google calendar
 
   constructor(props){
     super(props);
@@ -39,12 +36,13 @@ class LangTutor extends React.Component {
       email: this.state.email,
       tutorTime: this.state.tutorTime,
     });
+    document.getElementById("addTutor").reset();
     event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="addTutor" onSubmit={this.handleSubmit}>
         <header>
           <h2> Add a new MLRC tutor </h2>
         </header>
