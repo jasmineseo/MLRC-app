@@ -35,6 +35,7 @@ class Feedback extends React.Component {
 
     this.state = {
       date: "",
+      time: "",
       language: "",
       question1: "",
       question2: "",
@@ -50,7 +51,12 @@ class Feedback extends React.Component {
   }
 
   handleSubmit(event) {
-    firebase.database().ref("feedback/" + this.state.date).set({
+    alert("Thank you for your feedback.");
+
+    var dt = new Date();
+    this.state.time = dt.toLocaleTimeString();
+
+    firebase.database().ref("feedback/" + this.state.date + "/" + this.state.time).set({
       language: this.state.language,
       question1: this.state.question1,
       question2: this.state.question2,
@@ -101,7 +107,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Question 1?
+          What did you work on during your session?
           <br />
           <textarea
             type="text"
@@ -114,7 +120,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Question 2?
+          Who helped you today? Was yocur tutor/consultant helpful and knowledgable?
           <br />
           <textarea
             type="text"
@@ -127,7 +133,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Question 3?
+          Do you think you will return to the MLRC in the future? Why or why not?
           <br />
           <textarea
             type="test"

@@ -2,14 +2,11 @@ import React from "react";
 import { render } from "react-dom";
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
+import {auth, firebase} from './firebase';
 // import "./styles.css";
 
 
-// install react-table
-//  npm install react-table
 
-
-// TODO: fetch data from firebase
 
 class DisplayFeedback extends React.Component {
   
@@ -19,6 +16,9 @@ class DisplayFeedback extends React.Component {
   //     data: 
   //   };
   // }
+
+
+
 
   getTrProps = (state, rowInfo, instance) => {
     if (rowInfo) {
@@ -31,10 +31,10 @@ class DisplayFeedback extends React.Component {
     return {};
   }
 
-
+  feedbackData = firebase.database().ref().child('feedback');
 
   render() {
-
+    // const data = [feedbackData];
     const data = [{
       language: 'Spanish',
       question1: "Homework",
@@ -58,6 +58,15 @@ class DisplayFeedback extends React.Component {
       }
     ]
 
+    const styles = {
+      customHeaderCell: {
+        '& div': {
+          whiteSpace: "normal",
+          wordWrap: "break-word" 
+        }
+       }
+    };
+
     return (
       <div>
         <header>
@@ -74,8 +83,8 @@ class DisplayFeedback extends React.Component {
               // ),
               Header: "Language",
               accessor: "language",
-              style: { 'white-space': 'unset' },
-              maxWidth: 120
+              style: { 'white-space': 'unset'},
+              maxWidth: 150
             },
             {
               Header: "What did you work on during your session?",
@@ -83,7 +92,7 @@ class DisplayFeedback extends React.Component {
               style: { 'white-space': 'unset' }
             },
             {
-              Header: 'Who helped you today? Was your tutor/consultant helpful and knowledgable?',
+              Header: 'Who helped you today? Was yocur tutor/consultant helpful and knowledgable?',
               accessor: "question2",
               style: { 'white-space': 'unset' }
             },
