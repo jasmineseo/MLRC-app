@@ -1,7 +1,33 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-import "./styles.css";
+// import "./styles.css";
 import {auth,firebase} from './firebase';
+import Select from '@material-ui/core/Select';
+import { withStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
+
+const FeedbackPage = () =>
+  <div>
+    <Feedback />
+  </div>
 
 class Feedback extends React.Component {
   constructor(props) {
@@ -42,22 +68,19 @@ class Feedback extends React.Component {
           <h2> Send us feedback! </h2>
         </header>
         <label>
-          Which language did you visit for?
+          Which tutor did you visit?
           <br />
           <select
             value={this.state.value}
-            name="language"
+            name="tutor"
             type="select"
-            placeholder={"Select a language"}
+            placeholder={"Select a tutor"}
             onChange={this.handleChange}
           >
-            <option value="Select a language">Select a language</option>
-            <option value="Arabic">Arabic</option>
-            <option value="French">French</option>
-            <option value="German">German</option>
-            <option value="Italian">Italian</option>
-            <option value="Korean">Korean</option>
-            <option value="Spanish">Spanish</option>
+            <option value="Select a tutor">Select a tutor</option>
+            <option value="Tutor 1">Tutor 1</option>
+            <option value="Tutor 2">Tutor 2</option>
+            <option value="Tutor 3">Tutor 3</option>
             <option value="Other">Other</option>
           </select>
         </label>
@@ -120,4 +143,8 @@ class Feedback extends React.Component {
   }
 }
 
-export default Feedback;
+export default withStyles(styles)(FeedbackPage);
+
+export { 
+  Feedback,
+}

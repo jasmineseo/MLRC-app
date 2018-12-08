@@ -6,9 +6,10 @@ import { render } from "react-dom";
 // import Appointment from "./components/appointment";
 import { BrowserRouter } from "react-router-dom";
 import App from "./components/App";
-
 import "./styles.css";
 import * as serviceWorker from './serviceWorker';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 // const View = () => (
 //     <div>
@@ -22,8 +23,12 @@ import * as serviceWorker from './serviceWorker';
 //   render(<View />, document.getElementById("root"));
   
 render(
-  <BrowserRouter>
-    <App />
+    <BrowserRouter>
+  <React.Fragment>
+    <CssBaseline />
+      <App />
+    
+  </React.Fragment>
   </BrowserRouter>,
   document.getElementById("root")
 );

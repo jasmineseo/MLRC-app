@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { SignUpLink } from './SignUp';
+// import { SignUpLink } from './SignUp';
 import {auth, firebase} from './firebase';
 import * as routes from '../constants/routes';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/Input';
 
 const SignInPage = ({ history }) =>
   <div>
-    <h1>Sign In</h1>
     <SignInForm history={history} />
-    <SignUpLink />
+    {/* <SignUpLink /> */}
   </div>
 
 const byPropKey = (propertyName, value) => () => ({
@@ -38,7 +39,7 @@ class SignInForm extends Component {
       history,
     } = this.props;
 
-    auth.doSignInWithEmailAndPassword(email, password)
+    auth.signInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState({ ...INITIAL_STATE });
         history.push(routes.HOME);
@@ -63,21 +64,27 @@ class SignInForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
+      <header>
+        <h2>Sign In</h2>
+      </header>
+        <TextField
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
-          type="text"
+          id="text"
           placeholder="Email Address"
         />
-        <input
+        <br />
+        <TextField
           value={password}
           onChange={event => this.setState(byPropKey('password', event.target.value))}
+          id="password"
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <br />
+        <Button disabled={isInvalid} onClick={this.onSubmit}>
           Sign In
-        </button>
+        </Button>
 
         { error && <p>{error.message}</p> }
       </form>
