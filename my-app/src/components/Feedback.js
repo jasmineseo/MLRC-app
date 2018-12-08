@@ -34,7 +34,6 @@ class Feedback extends React.Component {
     super(props);
 
     this.state = {
-      date: "",
       time: "",
       language: "",
       question1: "",
@@ -54,9 +53,9 @@ class Feedback extends React.Component {
     alert("Thank you for your feedback.");
 
     var dt = new Date();
-    this.state.time = dt.toLocaleTimeString();
+    this.state.time = dt.toTimeString();
 
-    firebase.database().ref("feedback/" + this.state.date + "/" + this.state.time).set({
+    firebase.database().ref("feedback/" + this.state.time).set({
       language: this.state.language,
       question1: this.state.question1,
       question2: this.state.question2,
@@ -74,33 +73,24 @@ class Feedback extends React.Component {
           <h2> Send us feedback! </h2>
         </header>
         <label>
-          Which tutor did you visit?
+          What language did you visit for?
           <br />
           <select
             value={this.state.value}
-            name="tutor"
+            name="language"
             type="select"
-            placeholder={"Select a tutor"}
+            placeholder={"Select a language"}
             onChange={this.handleChange}
           >
-            <option value="Select a tutor">Select a tutor</option>
-            <option value="Tutor 1">Tutor 1</option>
-            <option value="Tutor 2">Tutor 2</option>
-            <option value="Tutor 3">Tutor 3</option>
+            <option value="Select a language">Select a language</option>
+            <option value="Arabic">Arabic</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Italian">Italian</option>
+            <option value="Korean">Korean</option>
+            <option value="Spanish">Spanish</option>
             <option value="Other">Other</option>
           </select>
-        </label>
-        <br />
-        <br />
-        <label>
-          Date:
-          <input
-            type="text"
-            name="date"
-            value={this.state.value}
-            placeholder={"MM-DD-YYYY"}
-            onChange={this.handleChange}
-          />
         </label>
         <br />
         <br />
@@ -118,7 +108,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Who helped you today? Was yocur tutor/consultant helpful and knowledgable?
+          Who helped you today? Was your tutor/consultant helpful and knowledgable?
           <br />
           <textarea
             type="text"
