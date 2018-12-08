@@ -2,35 +2,14 @@ import React from "react";
 import { render } from "react-dom";
 import ReactTable from 'react-table';
 import "./react-table.css";
-import {auth, firebase} from './firebase';
-// import "./styles.css";
+import {firebase} from './firebase';
 
 
 
 
 class DisplayFeedback extends React.Component {
   
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     data: 
-  //   };
-  // }
 
-
-
-  /*
-  getTrProps = (state, rowInfo, instance) => {
-    if (rowInfo) {
-      return {
-        style: {
-          height: 100
-        }
-      }
-    }
-    return {};
-  }
-*/
   feedbackData = firebase.database().ref().child('feedback');
 
   render() {
