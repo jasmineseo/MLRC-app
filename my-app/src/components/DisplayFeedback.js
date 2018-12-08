@@ -43,7 +43,7 @@ class DisplayFeedback extends React.Component {
       },{
         language: 'French',
         question1: "I reviewed French vocabulary words for an upcoming test for French 44",
-        question2: "My tutor, Sarah, was extremely helfpul and friendly.",
+        question2: "My tutor, Sarah, was extremely helpful and friendly.",
         question3: "I will defintely visit the MLRC again."
       },{
         language: 'Arabic',
@@ -58,6 +58,7 @@ class DisplayFeedback extends React.Component {
       }
     ]
 
+    /*
     const styles = {
       customHeaderCell: {
         '& div': {
@@ -66,6 +67,7 @@ class DisplayFeedback extends React.Component {
         }
        }
     };
+    */
 
     return (
       <div>
@@ -74,6 +76,7 @@ class DisplayFeedback extends React.Component {
         </header>
         <ReactTable
           data={data}
+          minRows={0}
           columns={[
             {
               // Header: () => (
@@ -84,7 +87,7 @@ class DisplayFeedback extends React.Component {
               Header: <b>Language</b>,
               accessor: "language",
               maxWidth: 150,
-              headerStyle: { 'white-space': 'unset' }
+              headerStyle: { 'white-space': 'unset' },
             },
             {
               Header: <b>What did you work on during your session?</b>,
@@ -113,10 +116,7 @@ class DisplayFeedback extends React.Component {
           ]}
           defaultPageSize={10}
           className="-striped -highlight"
-          getTrProps={this.getTrProps}
-          style={{
-            height: "1200px" // forces fixed header while scrolling
-          }}
+          //getTrProps={this.getTrProps}
         />
         <br />
       </div> 
