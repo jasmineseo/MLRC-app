@@ -1,15 +1,12 @@
 import React from "react";
 import { render } from "react-dom";
 import ReactTable from 'react-table';
-import "react-table/react-table.css";
+import "./react-table.css";
+import {auth, firebase} from './firebase';
 // import "./styles.css";
 
 
-// install react-table
-//  npm install react-table
 
-
-// TODO: fetch data from firebase
 
 class DisplayFeedback extends React.Component {
   
@@ -20,6 +17,9 @@ class DisplayFeedback extends React.Component {
   //   };
   // }
 
+
+
+  /*
   getTrProps = (state, rowInfo, instance) => {
     if (rowInfo) {
       return {
@@ -30,11 +30,11 @@ class DisplayFeedback extends React.Component {
     }
     return {};
   }
-
-
+*/
+  feedbackData = firebase.database().ref().child('feedback');
 
   render() {
-
+    // const data = [feedbackData];
     const data = [{
       language: 'Spanish',
       question1: "Homework",
@@ -43,7 +43,7 @@ class DisplayFeedback extends React.Component {
       },{
         language: 'French',
         question1: "I reviewed French vocabulary words for an upcoming test for French 44",
-        question2: "My tutor, Sarah, was extremely helfpul and friendly.",
+        question2: "My tutor, Sarah, was extremely helpful and friendly.",
         question3: "I will defintely visit the MLRC again."
       },{
         language: 'Arabic',
@@ -58,6 +58,17 @@ class DisplayFeedback extends React.Component {
       }
     ]
 
+    /*
+    const styles = {
+      customHeaderCell: {
+        '& div': {
+          whiteSpace: "normal",
+          wordWrap: "break-word" 
+        }
+       }
+    };
+    */
+
     return (
       <div>
         <header>
@@ -65,6 +76,7 @@ class DisplayFeedback extends React.Component {
         </header>
         <ReactTable
           data={data}
+          minRows={0}
           columns={[
             {
               // Header: () => (
@@ -72,25 +84,28 @@ class DisplayFeedback extends React.Component {
               //     <i style={height: /> Language
               //   </span>
               // ),
-              Header: "Language",
+              Header: <b>Language</b>,
               accessor: "language",
-              style: { 'white-space': 'unset' },
-              maxWidth: 120
+              maxWidth: 150,
+              headerStyle: { 'white-space': 'unset' },
             },
             {
-              Header: "What did you work on during your session?",
+              Header: <b>What did you work on during your session?</b>,
               accessor: "question1",
-              style: { 'white-space': 'unset' }
+              style: { 'white-space': 'unset' },
+              headerStyle: { 'white-space': 'unset' }
             },
             {
-              Header: 'Who helped you today? Was your tutor/consultant helpful and knowledgable?',
+              Header: <b>Who helped you today? Was your tutor/consultant helpful and knowledgable?</b>,
               accessor: "question2",
-              style: { 'white-space': 'unset' }
+              style: { 'white-space': 'unset' },
+              headerStyle: { 'white-space': 'unset' }
             },
             {
-              Header: 'Do you think you will return to the MLRC in the future? Why or why not?',
+              Header: <b>Do you think you will return to the MLRC in the future? Why or why not?</b>,
               accessor: "question3",
-              style: { 'white-space': 'unset' }
+              style: { 'white-space': 'unset' },
+              headerStyle: { 'white-space': 'unset' }
             }
           ]}
           defaultSorted={[
@@ -101,10 +116,10 @@ class DisplayFeedback extends React.Component {
           ]}
           defaultPageSize={10}
           className="-striped -highlight"
-          getTrProps={this.getTrProps}
+          //getTrProps={this.getTrProps}
         />
         <br />
-      </div>
+      </div> 
     );
   }
 }
