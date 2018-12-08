@@ -43,7 +43,7 @@ class Appointment extends React.Component {
     var calendarLink = Promise.resolve(this.findLink(lang));
     let currentComponent = this;
     calendarLink.then(function(value) {
-      currentComponent.setState({calendar: value})
+        currentComponent.setState({calendar: value})
     });
   }
 
