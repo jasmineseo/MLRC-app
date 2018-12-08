@@ -53,7 +53,7 @@ class Feedback extends React.Component {
     alert("Thank you for your feedback.");
 
     var dt = new Date();
-    this.state.time = dt.toLocaleTimeString();
+    this.state.time = dt.toString();
 
     firebase.database().ref("feedback/" + this.state.time).set({
       language: this.state.language,
@@ -108,7 +108,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Who helped you today? Was yocur tutor/consultant helpful and knowledgable?
+          Who helped you today? Was your tutor/consultant helpful and knowledgable?
           <br />
           <textarea
             type="text"
