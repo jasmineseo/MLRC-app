@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-// import { SignUpLink } from './SignUp';
 import {auth, firebase} from './firebase';
 import * as routes from '../constants/routes';
 import Button from '@material-ui/core/Button';
