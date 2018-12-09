@@ -30,18 +30,7 @@ class CheckIn extends React.Component {
 
   handleSubmit(event) {
     alert(
-      "Your name is " +
-        this.state.name +
-        "\nYour email is " + 
-        this.state.email + 
-        "\nYou attend " +
-        this.state.school +
-        "; Class year: " +
-        this.state.year +
-        "\nVisiting the MLRC for " +
-        this.state.service +
-        " in " +
-        this.state.language
+      "Thank you for checking in to the MLRC!"
     );
     var now = new Date();
     now.setHours(0,0,0,0);
