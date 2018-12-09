@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
-import {auth, firebase} from './firebase';
+import {firebase} from './firebase';
 // import "./styles.css";
 
 
@@ -10,31 +10,53 @@ import {auth, firebase} from './firebase';
 
 class DisplayFeedback extends React.Component {
   
+
+  getFeedback(){
+    var dicts = [];
+    var ref = firebase.database().ref("feedback");
+    ref.on("value", function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        var curDict = {language: childSnapshot.val()['language'],
+                      question1: childSnapshot.val()['question1'],
+                      question2: childSnapshot.val()['question2'],
+                      question3: childSnapshot.val()['question3']};
+        dicts.push(curDict);
+        console.log(typeof curDict, "curDict is", curDict);
+      });
+    });
+    console.log("feedbacks: ", dicts);
+    return dicts;
+  }
+
+
+
   // constructor(){
   //   super();
   //   this.state = {
-  //     data: 
+  //     data: []
   //   };
+  //   this.fetchData = this.fetchData.bind(this);
   // }
 
+  // fetchData(){
+  //   this.setState({
+  //     data: this.getFeedback()
+      
+  //   });
+  //   // const feedback = this.getFeedback();
+  //   // this.state.data = this.setState({ data: feedback});
+  //   // console.log(this.state.data);
+  // }
 
-
-
-  getTrProps = (state, rowInfo, instance) => {
-    if (rowInfo) {
-      return {
-        style: {
-          height: 100
-        }
-      }
-    }
-    return {};
-  }
-
-  feedbackData = firebase.database().ref().child('feedback');
+  
 
   render() {
-    // const data = [feedbackData];
+
+    
+    const feedbackdata = this.getFeedback();
+    console.log("data in render:", feedbackdata);
+    console.log("feedback type: ", typeof feedbackdata);
+    console.log("feedback element type: ", typeof feedbackdata[0]);
     const data = [{
       language: 'Spanish',
       question1: "Homework",
@@ -56,31 +78,20 @@ class DisplayFeedback extends React.Component {
         question2: "The French tutor, Julia, helped me translate some words and corrected my grammatical errors. She is very considerate and patient even when I didn't understand some of her explanations.",
         question3: "Yes! I would come again."
       }
-    ]
+    ];
+    console.log("data  type: ",typeof data);
+    console.log("data element type: ", typeof data[0]);
 
-    const styles = {
-      customHeaderCell: {
-        '& div': {
-          whiteSpace: "normal",
-          wordWrap: "break-word" 
-        }
-       }
-    };
-
+    // const feedbackdata = this.state;
     return (
       <div>
         <header>
           <h2> View student feedback </h2>
         </header>
         <ReactTable
-          data={data}
+          data={feedbackdata}
           columns={[
             {
-              // Header: () => (
-              //   <span> 
-              //     <i style={height: /> Language
-              //   </span>
-              // ),
               Header: "Language",
               accessor: "language",
               style: { 'white-space': 'unset'},
@@ -110,7 +121,6 @@ class DisplayFeedback extends React.Component {
           ]}
           defaultPageSize={10}
           className="-striped -highlight"
-          getTrProps={this.getTrProps}
         />
         <br />
       </div>
