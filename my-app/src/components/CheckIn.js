@@ -1,6 +1,5 @@
 import React from "react";
-// import ReactDOM from "react-dom";
-import {auth, firebase} from './firebase';
+import {firebase} from './firebase';
 import "./styles.css";
 
 const CheckInPage = () =>
@@ -18,8 +17,7 @@ class CheckIn extends React.Component {
       school: "",
       year: "",
       service: "",
-      language: "",
-      date:""
+      language: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -45,7 +43,9 @@ class CheckIn extends React.Component {
         " in " +
         this.state.language
     );
-    firebase.database().ref("checkin/" + this.state.date + "/" + this.state.name).set({
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    firebase.database().ref("checkin/" + now.getTime() + "/" + this.state.name).set({
       language: this.state.language,
       year: this.state.year,
       service: this.state.service,
@@ -80,18 +80,6 @@ class CheckIn extends React.Component {
             name="email"
             value={this.state.value}
             placeholder={"youremail@mail.com"}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Date:
-          <input
-            type="text"
-            name="date"
-            value={this.state.value}
-            placeholder={"MM-DD-YYYY"}
             onChange={this.handleChange}
           />
         </label>
@@ -184,8 +172,3 @@ export default CheckInPage;
 export {
   CheckIn,
 };
-
-// ReactDOM.render(<CheckIn />, document.getElementById("root"));
-
-// const rootElement = document.getElementById("root");
-//ReactDOM.render(<App />, rootElement);

@@ -8,15 +8,14 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SignOut from "./SignOut";
 import RequestData from "./RequestData";
-import VisitationPlot from "./VisitationPlot";
 import LangTutor from "./LangTutor";
 import DisplayFeedback from "./DisplayFeedback";
-import {auth, firebase} from './firebase';
+import {auth} from './firebase';
 import "./styles.css";
 import { BrowserRouter as Router} from 'react-router-dom';
 
 
-const Cur_Main = ({ authUser }) =>
+const CurMain = ({ authUser }) =>
   <div>
     { authUser
         ? <Main />
@@ -49,7 +48,7 @@ const MainNonAuth = () => (
   </main>
 );
 
-const Cur_Header = ({ authUser }) =>
+const CurHeader = ({ authUser }) =>
   <div>
     { authUser
         ? <Header />
@@ -128,8 +127,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Cur_Header authUser={this.state.authUser} />
-          <Cur_Main authUser={this.state.authUser} />
+          <CurHeader authUser={this.state.authUser} />
+          <CurMain authUser={this.state.authUser} />
 
           <hr/>
         </div>

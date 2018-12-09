@@ -60,7 +60,7 @@ ul li.active a {
     border: 3px solid #555;
   }
   
-/*
+
 input[type="text"], select {
   width: 100%;
   padding: 12px 20px;
@@ -71,7 +71,7 @@ input[type="text"], select {
   border-radius: 4px;
   background-color: #ffffff;
   }
-*/
+
   
   input[type="submit"] {
   width: 50%;
@@ -93,22 +93,22 @@ div {
   background-color: #f2f2f2;
   padding: 20px;
 }
-/*
+
 input[type="text"] {
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
 }
-*/
 
-/*
+
+
 input[type="password"] {
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-}*/
+}
 
 textarea {
   width: 50%;

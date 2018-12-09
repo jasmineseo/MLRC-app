@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link, withRouter, } from 'react-router-dom';
-import {auth, firebase} from './firebase';
+import {auth} from './firebase';
 import * as routes from '../constants/routes';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/Input';
@@ -32,7 +31,6 @@ class SignUpForm extends Component {
 
     onSubmit = (event) => {
         const {
-            username,
             email,
             passwordOne,
         } = this.state;
@@ -55,7 +53,6 @@ class SignUpForm extends Component {
 
   render() {
     const {
-        username,
         email,
         passwordOne,
         passwordTwo,
@@ -64,8 +61,7 @@ class SignUpForm extends Component {
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
-      email === '' ||
-      username === '';
+      email === '';
 
 
     return (
@@ -75,12 +71,7 @@ class SignUpForm extends Component {
           Add New Admin
         </h2>
       </header>
-        <TextField
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Full Name"
-        />
+        
         <br />
         <TextField
           value={email}
@@ -114,16 +105,9 @@ class SignUpForm extends Component {
   }
 }
 
-// const SignUpLink = () =>
-//   <p>
-//     Don't have an account?
-//     {' '}
-//     <Link to={routes.SIGN_UP}>Sign Up</Link>
-//   </p>
 
 export default SignUpPage;
 
 export {
   SignUpForm,
-  // SignUpLink,
 };

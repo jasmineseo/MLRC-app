@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import ReactTable from 'react-table';
 import "react-table/react-table.css";
 import {firebase} from './firebase';
+import "./react-table.css";
 // import "./styles.css";
 
 
@@ -48,8 +49,6 @@ class DisplayFeedback extends React.Component {
   //   // console.log(this.state.data);
   // }
 
-  
-
   render() {
 
     
@@ -65,7 +64,7 @@ class DisplayFeedback extends React.Component {
       },{
         language: 'French',
         question1: "I reviewed French vocabulary words for an upcoming test for French 44",
-        question2: "My tutor, Sarah, was extremely helfpul and friendly.",
+        question2: "My tutor, Sarah, was extremely helpful and friendly.",
         question3: "I will defintely visit the MLRC again."
       },{
         language: 'Arabic',
@@ -77,10 +76,7 @@ class DisplayFeedback extends React.Component {
         question1: "I worked on my essay for French 33.",
         question2: "The French tutor, Julia, helped me translate some words and corrected my grammatical errors. She is very considerate and patient even when I didn't understand some of her explanations.",
         question3: "Yes! I would come again."
-      }
-    ];
-    console.log("data  type: ",typeof data);
-    console.log("data element type: ", typeof data[0]);
+      }];
 
     // const feedbackdata = this.state;
     return (
@@ -90,27 +86,31 @@ class DisplayFeedback extends React.Component {
         </header>
         <ReactTable
           data={feedbackdata}
+          minRows={0}
           columns={[
             {
-              Header: "Language",
+              Header: <b>Language</b>,
               accessor: "language",
-              style: { 'white-space': 'unset'},
-              maxWidth: 150
+              maxWidth: 150,
+              headerStyle: { 'white-space': 'unset' },
             },
             {
-              Header: "What did you work on during your session?",
+              Header: <b>What did you work on during your session?</b>,
               accessor: "question1",
-              style: { 'white-space': 'unset' }
+              style: { 'white-space': 'unset' },
+              headerStyle: { 'white-space': 'unset' }
             },
             {
-              Header: 'Who helped you today? Was yocur tutor/consultant helpful and knowledgable?',
+              Header: <b>Who helped you today? Was your tutor/consultant helpful and knowledgable?</b>,
               accessor: "question2",
-              style: { 'white-space': 'unset' }
+              style: { 'white-space': 'unset' },
+              headerStyle: { 'white-space': 'unset' }
             },
             {
-              Header: 'Do you think you will return to the MLRC in the future? Why or why not?',
+              Header: <b>Do you think you will return to the MLRC in the future? Why or why not?</b>,
               accessor: "question3",
-              style: { 'white-space': 'unset' }
+              style: { 'white-space': 'unset' },
+              headerStyle: { 'white-space': 'unset' }
             }
           ]}
           defaultSorted={[
@@ -123,7 +123,7 @@ class DisplayFeedback extends React.Component {
           className="-striped -highlight"
         />
         <br />
-      </div>
+      </div> 
     );
   }
 }

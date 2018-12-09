@@ -79,8 +79,7 @@ class VisitationPlots extends React.Component {
 
     formatStackedData(data, categories){
         var dataStackLayout = d3.stack().keys(categories)
-        .offset(d3.stackOffsetDiverging)
-        (data)
+        .offset(d3.stackOffsetDiverging)(data)
         
         return dataStackLayout
     }
