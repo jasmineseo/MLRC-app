@@ -17,8 +17,7 @@ class CheckIn extends React.Component {
       school: "",
       year: "",
       service: "",
-      language: "",
-      date:""
+      language: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,6 +29,7 @@ class CheckIn extends React.Component {
   }
 
   handleSubmit(event) {
+<<<<<<< HEAD
     // alert(
     //   "Your name is " +
     //     this.state.name +
@@ -45,6 +45,25 @@ class CheckIn extends React.Component {
     //     this.state.language
     // );
     firebase.database().ref("checkin/" + this.state.date + "/" + this.state.name).set({
+=======
+    alert(
+      "Your name is " +
+        this.state.name +
+        "\nYour email is " + 
+        this.state.email + 
+        "\nYou attend " +
+        this.state.school +
+        "; Class year: " +
+        this.state.year +
+        "\nVisiting the MLRC for " +
+        this.state.service +
+        " in " +
+        this.state.language
+    );
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    firebase.database().ref("checkin/" + now.getTime() + "/" + this.state.name).set({
+>>>>>>> 8558c62b3422ebeb42d351b190c6903fd736adcd
       language: this.state.language,
       year: this.state.year,
       service: this.state.service,
@@ -97,18 +116,6 @@ class CheckIn extends React.Component {
             name="email"
             value={this.state.value}
             placeholder={"youremail@mail.com"}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Date:
-          <input
-            type="text"
-            name="date"
-            value={this.state.value}
-            placeholder={"MM-DD-YYYY"}
             onChange={this.handleChange}
           />
         </label>
