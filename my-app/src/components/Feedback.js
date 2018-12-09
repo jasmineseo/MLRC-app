@@ -48,11 +48,7 @@ class Feedback extends React.Component {
     alert("Thank you for your feedback.");
 
     var dt = new Date();
-<<<<<<< HEAD
-    this.state.time = dt.toTimeString();
-=======
     this.state.time = dt.toString();
->>>>>>> 31fb1c646ad1697c7fcb5b90a7a5f832d4c0f52f
 
     firebase.database().ref("feedback/" + this.state.time).set({
       language: this.state.language,
@@ -72,11 +68,7 @@ class Feedback extends React.Component {
           <h2> Send us feedback! </h2>
         </header>
         <label>
-<<<<<<< HEAD
-          What language did you visit for?
-=======
           Which language did you visit for?
->>>>>>> 31fb1c646ad1697c7fcb5b90a7a5f832d4c0f52f
           <br />
           <select
             value={this.state.value}
