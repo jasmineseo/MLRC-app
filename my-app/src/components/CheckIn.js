@@ -1,6 +1,5 @@
 import React from "react";
-// import ReactDOM from "react-dom";
-import {auth, firebase} from './firebase';
+import {firebase} from './firebase';
 import "./styles.css";
 
 const CheckInPage = () =>
@@ -173,8 +172,3 @@ export default CheckInPage;
 export {
   CheckIn,
 };
-
-// ReactDOM.render(<CheckIn />, document.getElementById("root"));
-
-// const rootElement = document.getElementById("root");
-//ReactDOM.render(<App />, rootElement);

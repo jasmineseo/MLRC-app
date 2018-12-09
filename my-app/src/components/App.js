@@ -6,12 +6,13 @@ import CheckIn from "./CheckIn";
 import Feedback from "./Feedback";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import SignOut from "./SignOut";
 import RequestData from "./RequestData";
 import VisitationPlot from "./VisitationPlot";
 import LangTutor from "./LangTutor";
 import DisplayFeedback from "./DisplayFeedback";
 import {auth, firebase} from './firebase';
-import "./headerstyle.css";
+import "./styles.css";
 import { BrowserRouter as Router} from 'react-router-dom';
 
 
@@ -27,9 +28,6 @@ const Main = () => (
   <main>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/appointment" component={Appointment} />
-      <Route path="/checkin" component={CheckIn} />
-      <Route path="/feedback" component={Feedback} />
       <Route path="/signup" component={SignUp} />
       <Route path="/langtutor" component={LangTutor} />
       <Route path="/displayfeedback" component={DisplayFeedback} />
@@ -47,10 +45,6 @@ const MainNonAuth = () => (
       <Route path="/feedback" component={Feedback} />
       <Route path="/signin" component={SignIn} />
       <Route path="/signup" component={SignUp} />
-      <Route path="/langtutor" component={LangTutor} />
-      <Route path="/displayfeedback" component={DisplayFeedback} />
-      <Route path="/requestdata" component={RequestData} />
-      <Route path="/plots" component={VisitationPlot} /> 
     </Switch>
   </main>
 );
@@ -74,28 +68,13 @@ const HeaderNonAuth = () => (
           <Link to="/appointment">Appointment</Link>
         </li>
         <li>
-          <Link to="/checkin">Check in</Link>
+          <Link to="/checkin">Check In</Link>
         </li>
         <li>
           <Link to="/feedback">Feedback</Link>
         </li>
         <li>
           <Link to="/signin">Sign In</Link>
-        </li>
-        <li>
-          <Link to="/signup">Sign Up</Link>
-        </li>
-        <li>
-          <Link to="/langtutor">Add Tutor</Link>
-        </li>
-        <li>
-          <Link to="/displayfeedback">Student Feedback</Link>
-        </li>
-        <li>
-          <Link to="/requestdata">Request Data</Link>
-        </li>
-        <li>
-          <Link to="/plots">Plot Data from Visitations</Link>
         </li>
       </ul>
     </nav>
@@ -110,18 +89,6 @@ const Header = () => (
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/appointment">Appointment</Link>
-        </li>
-        <li>
-          <Link to="/checkin">Check in</Link>
-        </li>
-        <li>
-          <Link to="/feedback">Feedback</Link>
-        </li>
-        <li>
-          <Link to="/signup">Sign Up</Link>
-        </li>
-        <li>
           <Link to="/langtutor">Add Tutor</Link>
         </li>
         <li>
@@ -129,6 +96,12 @@ const Header = () => (
         </li>
         <li>
           <Link to="/requestdata">Request Data</Link>
+        </li>
+        <li>
+          <Link to="/signup">Add New Admin</Link>
+        </li>
+        <li>
+          <SignOut />
         </li>
       </ul>
     </nav>

@@ -1,14 +1,40 @@
 import React from "react";
 // import ReactDOM from "react-dom";
-import "./styles.css";
+// import "./styles.css";
 import {auth,firebase} from './firebase';
+import Select from '@material-ui/core/Select';
+import { withStyles } from '@material-ui/core/styles';
+import FormControl from '@material-ui/core/FormControl';
+import TextField from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+});
+
+const FeedbackPage = () =>
+  <div>
+    <Feedback />
+  </div>
 
 class Feedback extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      date: "",
+      time: "",
       language: "",
       question1: "",
       question2: "",
@@ -24,7 +50,12 @@ class Feedback extends React.Component {
   }
 
   handleSubmit(event) {
-    firebase.database().ref("feedback/" + this.state.date).set({
+    alert("Thank you for your feedback.");
+
+    var dt = new Date();
+    this.state.time = dt.toString();
+
+    firebase.database().ref("feedback/" + this.state.time).set({
       language: this.state.language,
       question1: this.state.question1,
       question2: this.state.question2,
@@ -64,19 +95,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Date:
-          <input
-            type="text"
-            name="date"
-            value={this.state.value}
-            placeholder={"MM-DD-YYYY"}
-            onChange={this.handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label>
-          Question 1?
+          What did you work on during your session?
           <br />
           <textarea
             type="text"
@@ -89,7 +108,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Question 2?
+          Who helped you today? Was your tutor/consultant helpful and knowledgable?
           <br />
           <textarea
             type="text"
@@ -102,7 +121,7 @@ class Feedback extends React.Component {
         <br />
         <br />
         <label>
-          Question 3?
+          Do you think you will return to the MLRC in the future? Why or why not?
           <br />
           <textarea
             type="test"
@@ -120,4 +139,8 @@ class Feedback extends React.Component {
   }
 }
 
-export default Feedback;
+export default withStyles(styles)(FeedbackPage);
+
+export { 
+  Feedback,
+}
