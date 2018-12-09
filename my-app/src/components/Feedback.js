@@ -1,13 +1,8 @@
 import React from "react";
 // import ReactDOM from "react-dom";
 // import "./styles.css";
-import {auth,firebase} from './firebase';
-import Select from '@material-ui/core/Select';
+import {firebase} from './firebase';
 import { withStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 
 
 const styles = theme => ({

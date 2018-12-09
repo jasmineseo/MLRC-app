@@ -31,7 +31,6 @@ class SignUpForm extends Component {
 
     onSubmit = (event) => {
         const {
-            username,
             email,
             passwordOne,
         } = this.state;
@@ -54,7 +53,6 @@ class SignUpForm extends Component {
 
   render() {
     const {
-        username,
         email,
         passwordOne,
         passwordTwo,
@@ -63,8 +61,7 @@ class SignUpForm extends Component {
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
-      email === '' ||
-      username === '';
+      email === '';
 
 
     return (
@@ -74,12 +71,7 @@ class SignUpForm extends Component {
           Add New Admin
         </h2>
       </header>
-        <TextField
-          value={username}
-          onChange={event => this.setState(byPropKey('username', event.target.value))}
-          type="text"
-          placeholder="Full Name"
-        />
+        
         <br />
         <TextField
           value={email}
