@@ -6,7 +6,7 @@ Client: Marino Forlino (MForlino@scrippscollege.edu)
 Stakeholders: Priyanka Agarwal, Emily Zhao, Julia Read, David Sobek, Josh Cabral  
 
 # Goals
-The goal of our project is to ceate a website for the Modern Language Resource Center (MLRC) at Scripps College. 
+The goal of our project is to ceate a website for the [Modern Language Resource Center (MLRC)](https://community.scrippscollege.edu/mlrc/) at Scripps College. 
 The website will allow students who visit the language center to
 1. check-in for their tutoring sessions by leaving information on their language, type of service, home school, etc.  
 2. make appointments prior to visiting based on the tutor's availability
